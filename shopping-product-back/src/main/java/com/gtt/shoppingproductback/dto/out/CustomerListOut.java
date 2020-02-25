@@ -1,14 +1,11 @@
 package com.gtt.shoppingproductback.dto.out;
 
-public class CustomerOut {
+public class CustomerListOut {
     private String username;
     private String mobile;
     private String email;
     private String realName;
     private String password;
-    private Byte status;
-    private Long createTimeTemp;
-    private String defaultAddress;
 
     public String getUsername() {
         return username;
@@ -48,29 +45,5 @@ public class CustomerOut {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
-    public Long getCreateTimeTemp() {
-        return createTimeTemp;
-    }
-
-    public void setCreateTimeTemp(Long createTimeTemp) {
-        this.createTimeTemp = createTimeTemp;
-    }
-
-    public String getDefaultAddress() {
-        return defaultAddress;
-    }
-
-    public void setDefaultAddress(String defaultAddress) {
-        this.defaultAddress = defaultAddress;
     }
 }
