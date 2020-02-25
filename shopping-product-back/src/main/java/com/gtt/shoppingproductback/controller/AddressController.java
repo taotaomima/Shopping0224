@@ -1,18 +1,14 @@
 package com.gtt.shoppingproductback.controller;
 
-import com.gtt.shoppingproductback.dto.in.AddressIn;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gtt.shoppingproductback.dto.out.AddressListOut;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/address")
 public class AddressController {
 
-    @PostMapping("/create")
-    public void createAddress(@RequestBody AddressIn addressIn){
-
-    }
-
+    @GetMapping("/list")
+    public List<AddressListOut> getList(@RequestParam Integer customerId){return null;}
 }
