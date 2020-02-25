@@ -1,13 +1,20 @@
-package com.gtt.shoppingproductback.dto.out;
+package com.gtt.shoppingproductback.dto.in;
 
-public class ProductOut {
-
+public class ProductUpdateIn {
     private Integer productId;
     private String productName;
-    private Integer productCode;
     private  Double price;
+    private Double discount;
     private Integer stockQuantity;
     private Integer rewordPoints;
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -25,13 +32,6 @@ public class ProductOut {
         this.productName = productName;
     }
 
-    public Integer getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(Integer productCode) {
-        this.productCode = productCode;
-    }
 
     public Double getPrice() {
         return price;

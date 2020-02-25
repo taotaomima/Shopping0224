@@ -1,7 +1,9 @@
 package com.gtt.shoppingproductback.controller;
 
-import com.gtt.shoppingproductback.dto.in.ProductIn;
-import com.gtt.shoppingproductback.dto.out.ProductOut;
+import com.gtt.shoppingproductback.dto.in.ProductCreateIn;
+import com.gtt.shoppingproductback.dto.in.ProductUpdateIn;
+import com.gtt.shoppingproductback.dto.in.productListIn;
+import com.gtt.shoppingproductback.dto.out.ProductShowOut;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,14 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 
     @GetMapping("/search")
-    public ProductOut search(){
+    public ProductShowOut search(productListIn productListIn, @RequestParam Integer pageNum ){
         return null;
     }
 
     @PostMapping("/create")
-    public void addproduct(@RequestBody ProductIn productIn){
-
-    }
+    public Integer addproduct(@RequestBody ProductCreateIn productCreateIn){return null; }
 
     @PostMapping("/upload")
     public String upload(@RequestParam MultipartFile mainPicUrl){
@@ -25,13 +25,15 @@ public class ProductController {
     }
 
     @GetMapping("/findbyId")
-    public ProductOut findById(@RequestParam Integer productId ){
+    public ProductShowOut findById(@RequestParam Integer productId ){
         return null;
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody ProductIn productIn){
+    public void update(@RequestBody ProductUpdateIn productUpdateIn){
 
     }
 
+    @PostMapping("/delete")
+    public void deleteProduct(@RequestParam Integer productId){}
 }

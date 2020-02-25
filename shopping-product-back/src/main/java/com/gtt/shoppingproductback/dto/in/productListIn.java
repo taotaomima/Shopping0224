@@ -1,20 +1,11 @@
 package com.gtt.shoppingproductback.dto.in;
 
-public class ProductIn {
-    private Integer productId;
+public class productListIn {
     private String productName;
-    private Integer productCode;
+    private String productCode;
     private  Double price;
     private Integer stockQuantity;
-    private Integer rewordPoints;
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+    private Byte status;
 
     public String getProductName() {
         return productName;
@@ -24,11 +15,11 @@ public class ProductIn {
         this.productName = productName;
     }
 
-    public Integer getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Integer productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -48,11 +39,11 @@ public class ProductIn {
         this.stockQuantity = stockQuantity;
     }
 
-    public Integer getRewordPoints() {
-        return rewordPoints;
+    public Byte getStatus() {
+        return status;
     }
 
-    public void setRewordPoints(Integer rewordPoints) {
-        this.rewordPoints = rewordPoints;
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }
