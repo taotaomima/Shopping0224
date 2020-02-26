@@ -1,13 +1,14 @@
 package com.gtt.shoppingproductback.dto.out;
 
+import java.util.Date;
+
 public class CustomerOut {
     private String username;
     private String mobile;
     private String email;
     private String realName;
-    private String password;
     private Byte status;
-    private Long createTimeTemp;
+    private Date createTimeTemp;
     private String defaultAddress;
 
     public String getUsername() {
@@ -42,13 +43,7 @@ public class CustomerOut {
         this.realName = realName;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Byte getStatus() {
         return status;
@@ -58,11 +53,11 @@ public class CustomerOut {
         this.status = status;
     }
 
-    public Long getCreateTimeTemp() {
+    public Date getCreateTimeTemp() {
         return createTimeTemp;
     }
 
-    public void setCreateTimeTemp(Long createTimeTemp) {
+    public void setCreateTimeTemp(Date createTimeTemp) {
         this.createTimeTemp = createTimeTemp;
     }
 

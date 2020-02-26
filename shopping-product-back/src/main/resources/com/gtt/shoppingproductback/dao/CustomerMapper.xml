@@ -17,6 +17,20 @@
     <result column="reword_points" jdbcType="INTEGER" property="rewordPoints" />
     <result column="default_address_id" jdbcType="INTEGER" property="defaultAddressId" />
   </resultMap>
+
+  <resultMap id="CustomerListOut" type="com.gtt.shoppingproductback.dto.out.CustomerListOut">
+    <id column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="news_subscribed" jdbcType="BIT" property="newsSubscribed" />
+    <result column="reword_points" jdbcType="INTEGER" property="rewordPoints" />
+    <result column="default_address_id" jdbcType="INTEGER" property="defaultAddressId" />
+  </resultMap>
   <sql id="Base_Column_List">
     customer_id, username, real_name, avatar_url, encrypted_password, mobile, mobile_verified, 
     email, email_verified, status, create_time, news_subscribed, reword_points, default_address_id
@@ -196,4 +210,10 @@
       default_address_id = #{defaultAddressId,jdbcType=INTEGER}
     where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
+
+
+  <select id="search" resultMap="CustomerListOut">
+    <include refid="Base_Column_List" />
+    from jcart_customer
+  </select>
 </mapper>

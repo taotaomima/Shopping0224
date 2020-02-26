@@ -1,7 +1,11 @@
 package com.gtt.shoppingproductback.dao;
 
+import com.github.pagehelper.Page;
+import com.gtt.shoppingproductback.dto.out.CustomerListOut;
 import com.gtt.shoppingproductback.po.Customer;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer customerId);
 
@@ -14,4 +18,6 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    Page<CustomerListOut> search(Integer pageNum);
 }

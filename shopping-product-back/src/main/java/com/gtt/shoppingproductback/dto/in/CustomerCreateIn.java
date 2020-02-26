@@ -1,5 +1,8 @@
 package com.gtt.shoppingproductback.dto.in;
 
+
+import java.util.Date;
+
 public class CustomerCreateIn {
     private Integer customerId;
     private String username;
@@ -7,7 +10,33 @@ public class CustomerCreateIn {
     private String email;
     private String mobile;
     private Byte status;
-    private Long createTimeTemp;
+    private Date createTimeTemp;
+    private String password;
+    private String avatarUrl;
+
+    public Date getCreateTimeTemp() {
+        return createTimeTemp;
+    }
+
+    public void setCreateTimeTemp(Date createTimeTemp) {
+        this.createTimeTemp = createTimeTemp;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -57,11 +86,5 @@ public class CustomerCreateIn {
         this.status = status;
     }
 
-    public Long getCreateTimeTemp() {
-        return createTimeTemp;
-    }
 
-    public void setCreateTimeTemp(Long createTimeTemp) {
-        this.createTimeTemp = createTimeTemp;
-    }
 }
