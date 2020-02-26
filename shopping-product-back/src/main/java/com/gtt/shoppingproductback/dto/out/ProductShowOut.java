@@ -6,7 +6,7 @@ public class ProductShowOut {
 
     private Integer productId;
     private String productName;
-    private Integer productCode;
+    private String productCode;
     private  Double price;
     private Double discount;
     private String mianPicUrl;
@@ -81,11 +81,11 @@ public class ProductShowOut {
         this.productName = productName;
     }
 
-    public Integer getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Integer productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 

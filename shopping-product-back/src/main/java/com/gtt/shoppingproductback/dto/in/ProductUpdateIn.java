@@ -1,12 +1,68 @@
 package com.gtt.shoppingproductback.dto.in;
 
+import java.util.List;
+
 public class ProductUpdateIn {
     private Integer productId;
     private String productName;
+    private Integer productCode;
     private  Double price;
-    private Double discount;
     private Integer stockQuantity;
     private Integer rewordPoints;
+    private String mainPicUrl;
+    private String description;
+    private Byte status;
+    private Integer sortOrder;
+    private List<String> otherPic;
+    private Double discount;
+
+    public Integer getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Integer productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getMainPicUrl() {
+        return mainPicUrl;
+    }
+
+    public void setMainPicUrl(String mainPicUrl) {
+        this.mainPicUrl = mainPicUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public Integer getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(Integer sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public List<String> getOtherPic() {
+        return otherPic;
+    }
+
+    public void setOtherPic(List<String> otherPic) {
+        this.otherPic = otherPic;
+    }
 
     public Double getDiscount() {
         return discount;

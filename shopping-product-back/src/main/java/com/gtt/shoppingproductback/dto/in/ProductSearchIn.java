@@ -1,6 +1,6 @@
 package com.gtt.shoppingproductback.dto.in;
 
-public class productListIn {
+public class ProductSearchIn {
     private String productName;
     private String productCode;
     private  Double price;
