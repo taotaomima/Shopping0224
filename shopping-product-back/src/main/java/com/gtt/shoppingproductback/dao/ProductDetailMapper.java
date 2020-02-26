@@ -1,6 +1,7 @@
 package com.gtt.shoppingproductback.dao;
 
 import com.gtt.shoppingproductback.po.ProductDetail;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface ProductDetailMapper {
 
     int updateByPrimaryKey(ProductDetail record);
 
-    void betchDelete(List<Integer> productIds);
+    void betchDelete(@Param("productIds") List<Integer> productIds);
 }

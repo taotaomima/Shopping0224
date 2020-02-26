@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
 import com.gtt.shoppingproductback.dto.out.ProductShowOut;
 import com.gtt.shoppingproductback.po.Product;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,5 +27,5 @@ public interface ProductMapper {
 
     ProductShowOut getById(Integer productId);
 
-    void betchDelete(List<Integer> productIds);
+    void betchDelete(@Param("productIds")List<Integer> productIds);
 }
