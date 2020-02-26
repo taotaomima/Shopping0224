@@ -3,6 +3,8 @@ package com.gtt.shoppingproductback.dao;
 import com.gtt.shoppingproductback.po.Address;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer addressId);
@@ -16,6 +18,6 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
-
-    Address selectByCustomerId(Integer customerId);
+    List<Address> selectByCustomerId(Integer customerId);
+   // Address selectByCustomerId(Integer customerId);
 }
