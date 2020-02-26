@@ -1,7 +1,9 @@
 package com.gtt.shoppingproductback.dao;
 
 import com.gtt.shoppingproductback.po.Address;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer addressId);
 
@@ -14,4 +16,6 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    Address selectByCustomerId(Integer customerId);
 }
