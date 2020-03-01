@@ -3,15 +3,12 @@ package com.gtt.shoppingproductback.dto.out;
 public class ProductListOut {
     private Integer productId;
     private String productName;
-    private Integer productCode;
+    private String productCode;
     private  Double price;
     private Double discount;
-    private String mianPicUrl;
     private Byte status;
-    private String description;
     private Integer stockQuantity;
-    private Integer rewordPoints;
-    private Integer sortOrder;
+    private String mainPicUrl;
 
     public Integer getProductId() {
         return productId;
@@ -29,11 +26,11 @@ public class ProductListOut {
         this.productName = productName;
     }
 
-    public Integer getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Integer productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -53,28 +50,12 @@ public class ProductListOut {
         this.discount = discount;
     }
 
-    public String getMianPicUrl() {
-        return mianPicUrl;
-    }
-
-    public void setMianPicUrl(String mianPicUrl) {
-        this.mianPicUrl = mianPicUrl;
-    }
-
     public Byte getStatus() {
         return status;
     }
 
     public void setStatus(Byte status) {
         this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getStockQuantity() {
@@ -85,19 +66,11 @@ public class ProductListOut {
         this.stockQuantity = stockQuantity;
     }
 
-    public Integer getRewordPoints() {
-        return rewordPoints;
+    public String getMainPicUrl() {
+        return mainPicUrl;
     }
 
-    public void setRewordPoints(Integer rewordPoints) {
-        this.rewordPoints = rewordPoints;
-    }
-
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
+    public void setMainPicUrl(String mainPicUrl) {
+        this.mainPicUrl = mainPicUrl;
     }
 }

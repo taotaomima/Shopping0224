@@ -1,6 +1,7 @@
 package com.gtt.shoppingproductback.dao;
 
 import com.gtt.shoppingproductback.po.Administrator;
+import org.apache.ibatis.annotations.Param;
 
 public interface AdministratorMapper {
     int deleteByPrimaryKey(Integer administratorId);
@@ -15,5 +16,5 @@ public interface AdministratorMapper {
 
     int updateByPrimaryKey(Administrator record);
 
-    Administrator getByUsername(String username);
+    Administrator getByUsername(@Param("username") String username);
 }

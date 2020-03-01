@@ -128,7 +128,7 @@
   </update>
 
 
-  <select id="getByUsername" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="getByUsername" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from jcart_administrator

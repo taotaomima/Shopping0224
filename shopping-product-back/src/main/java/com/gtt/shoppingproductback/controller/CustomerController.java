@@ -29,7 +29,7 @@ public class CustomerController {
         PageOut<CustomerListOut> page = new PageOut<>();
         page.setPageSize(customerListOutPage.getPageSize());
         page.setPageNum(customerListOutPage.getPageNum());
-        page.setTotal((int) customerListOutPage.getTotal());
+        page.setTotal(customerListOutPage.getTotal());
         page.setList(customerListOutPage);
         return page;
     }

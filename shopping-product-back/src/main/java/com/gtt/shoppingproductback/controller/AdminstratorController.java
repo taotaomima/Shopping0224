@@ -21,7 +21,7 @@ public class AdminstratorController {
     private JWTUtil jwtUtil;
 
     @GetMapping("/login")
-    public AdministratorLoginOutDTO login(@RequestBody AdminstratorLoginIn adminstratorLoginIn) throws ClientException {
+    public AdministratorLoginOutDTO login(AdminstratorLoginIn adminstratorLoginIn) throws ClientException {
         Administrator administrator = administratorService.getByUsername(adminstratorLoginIn.getUsername());
         if (administrator == null){
             throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
@@ -50,6 +50,15 @@ public class AdminstratorController {
         return adminstratorGetProfileOut;
     }
 
+    @PostMapping("/updateProfile")
+    public void updateProfile(@RequestBody AdministratorUpdateProfileIn administratorUpdateProfileIn,@RequestAttribute Integer adminstratorId){
+        Administrator administrator = new Administrator();
+        administrator.setRealName(administratorUpdateProfileIn.getRealName());
+        administrator.setEmail(administratorUpdateProfileIn.getEmail());
+        administrator.setAvatarUrl(administratorUpdateProfileIn.getAvatarUrl());
+
+        administratorService.update(administrator);
+    }
     @GetMapping("/getList")
     public PageOut<AdminstratorListOut> getList(@RequestParam Integer pageNum){
         return null;
@@ -69,11 +78,6 @@ public class AdminstratorController {
     public void updateAdminstrator(AdminstratorUpdateIn adminstratorUpdateIn){
 
     }
-
-
-
-    @PostMapping("/updateProfile")
-    public void updateProfile(@RequestBody AdminstratorUpdateProfileIn adminstratorUpdateProfileIn, @RequestAttribute Integer adminstratorId){}
 
     @GetMapping("/changePwd")
     public void changePwd(@RequestBody AdminstratorChangePwdIn adminstratorChangePwdIn, @RequestAttribute Integer adminstratorId){}

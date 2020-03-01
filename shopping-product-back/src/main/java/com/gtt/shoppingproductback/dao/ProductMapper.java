@@ -23,7 +23,7 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
-    Page<ProductListOut> search(Integer pageNum);
+    Page<ProductListOut> search();
 
     ProductShowOut getById(Integer productId);
 

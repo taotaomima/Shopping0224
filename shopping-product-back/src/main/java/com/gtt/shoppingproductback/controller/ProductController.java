@@ -28,7 +28,7 @@ public class ProductController {
         Page<ProductListOut> page = productService.search(pageNum);
         PageOut<ProductListOut> pageOut = new PageOut<>();
         pageOut.setList(page);
-        pageOut.setTotal((int) page.getTotal());
+        pageOut.setTotal(page.getTotal());
         pageOut.setPageNum(page.getPageNum());
         pageOut.setPageSize(page.getPageSize());
         return pageOut;
