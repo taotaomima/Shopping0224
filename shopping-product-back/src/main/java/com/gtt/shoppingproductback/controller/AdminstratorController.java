@@ -3,10 +3,7 @@ package com.gtt.shoppingproductback.controller;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.gtt.shoppingproductback.constant.ClientExceptionConstant;
 import com.gtt.shoppingproductback.dto.in.*;
-import com.gtt.shoppingproductback.dto.out.AdministratorLoginOutDTO;
-import com.gtt.shoppingproductback.dto.out.AdminstratorListOut;
-import com.gtt.shoppingproductback.dto.out.AdminstratorShowOut;
-import com.gtt.shoppingproductback.dto.out.PageOut;
+import com.gtt.shoppingproductback.dto.out.*;
 import com.gtt.shoppingproductback.exception.ClientException;
 import com.gtt.shoppingproductback.po.Administrator;
 import com.gtt.shoppingproductback.service.AdministratorService;
@@ -40,6 +37,18 @@ public class AdminstratorController {
         }
     }
 
+    @GetMapping("/getProfile")
+    public AdminstratorGetProfileOut getProfile(@RequestAttribute Integer adminstratorId){
+        Administrator administrator = administratorService.getById(adminstratorId);
+        AdminstratorGetProfileOut adminstratorGetProfileOut=new AdminstratorGetProfileOut();
+        adminstratorGetProfileOut.setAdministratorId(adminstratorId);
+        adminstratorGetProfileOut.setUsername(administrator.getUsername());
+        adminstratorGetProfileOut.setRealName(administrator.getRealName());
+        adminstratorGetProfileOut.setEmail(administrator.getEmail());
+        adminstratorGetProfileOut.setAvatarUrl(administrator.getAvatarUrl());
+        adminstratorGetProfileOut.setCreateTimestamp(administrator.getCreateTime().getTime());
+        return adminstratorGetProfileOut;
+    }
 
     @GetMapping("/getList")
     public PageOut<AdminstratorListOut> getList(@RequestParam Integer pageNum){
@@ -61,8 +70,7 @@ public class AdminstratorController {
 
     }
 
-    @GetMapping("/getProfile")
-    public String getProfile(@RequestAttribute Integer adminstratorId){return null;}
+
 
     @PostMapping("/updateProfile")
     public void updateProfile(@RequestBody AdminstratorUpdateProfileIn adminstratorUpdateProfileIn, @RequestAttribute Integer adminstratorId){}
