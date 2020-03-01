@@ -5,7 +5,7 @@ import java.util.List;
 public class ProductUpdateIn {
     private Integer productId;
     private String productName;
-    private Integer productCode;
+    private String productCode;
     private  Double price;
     private Integer stockQuantity;
     private Integer rewordPoints;
@@ -16,11 +16,11 @@ public class ProductUpdateIn {
     private List<String> otherPic;
     private Double discount;
 
-    public Integer getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Integer productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 

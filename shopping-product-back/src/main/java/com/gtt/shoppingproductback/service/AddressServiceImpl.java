@@ -7,13 +7,14 @@ import com.gtt.shoppingproductback.po.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class AddressServiceImpl implements AddressService {
 
-    @Autowired
-    private AddressMapper addressMapper;
+    @Resource
+   private AddressMapper addressMapper;
 
     @Override
     public List<AddressListOut> getList(Integer customerId) {
