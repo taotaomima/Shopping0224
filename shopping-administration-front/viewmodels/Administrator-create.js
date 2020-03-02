@@ -6,6 +6,8 @@ var app = new Vue({
         realName: '',
         email: '',
         avatarUrl: '',
+        selectedAvatarUrl: '',
+        mainFileList: [],
         selectedStatus: 1,
         status: [
             { value: 0, label: '禁用' },
@@ -16,6 +18,32 @@ var app = new Vue({
         handleCreateClick(){
             console.log('create click');
             this.createAdministrator();
+        },
+        handleOnMainChange(val){
+            this.selectedAvatarUrl = val.raw;
+        },
+        handleUploadPicClick(){
+            console.log('upload pic click');
+            this.uploadImage();
+        },
+        uploadImage(){
+            var formData = new FormData();
+            formData.append("image", this.selectedMainPic);
+
+            axios.post('/image/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    app.avatarUrl = response.data;
+                    alert('上传成功');
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    alert('上传失败');
+                });
         },
         createAdministrator(){
             axios.post('/admin/create', {
