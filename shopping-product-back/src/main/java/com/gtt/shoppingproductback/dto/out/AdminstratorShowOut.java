@@ -3,9 +3,18 @@ package com.gtt.shoppingproductback.dto.out;
 public class AdminstratorShowOut {
     private Integer adminstratorId;
     private String username;
+    private String realName;
     private String email;
     private String avatorUrl;
     private Byte status;
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
     public Integer getAdminstratorId() {
         return adminstratorId;

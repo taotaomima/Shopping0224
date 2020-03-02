@@ -7,7 +7,16 @@ public class AdminstratorListOut {
     private String email;
     private String mobile;
     private String avatorUrl;
-    private String cresteTimeTemp;
+    private Long cresteTimeTemp;
+    private Byte status;
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
 
     public Integer getAdminstratorId() {
         return adminstratorId;
@@ -57,11 +66,11 @@ public class AdminstratorListOut {
         this.avatorUrl = avatorUrl;
     }
 
-    public String getCresteTimeTemp() {
+    public Long getCresteTimeTemp() {
         return cresteTimeTemp;
     }
 
-    public void setCresteTimeTemp(String cresteTimeTemp) {
+    public void setCresteTimeTemp(Long cresteTimeTemp) {
         this.cresteTimeTemp = cresteTimeTemp;
     }
 }

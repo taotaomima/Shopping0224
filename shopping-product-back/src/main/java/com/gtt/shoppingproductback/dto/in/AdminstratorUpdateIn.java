@@ -7,6 +7,24 @@ public class AdminstratorUpdateIn {
     private String mobile;
     private String password;
     private String avatorUrl;
+    private String realName;
+    private Byte status;
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
 
     public Integer getAdminstratorId() {
         return adminstratorId;
