@@ -9,6 +9,7 @@ var app = new Vue({
         stockQuantity: '',
         rewordPoints: '',
         sortOrder: '',
+        productAbstract: '',
         description: '',
         selectedStatus: 0,
         status: [
@@ -23,9 +24,26 @@ var app = new Vue({
         mainFileList: [],
         otherFileList: []
     },
+    mounted() {
+        console.log('view mounted');
+
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+
+        var url = new URL(location.href);
+        this.productId = url.searchParams.get("productId");
+        if (!this.productId) {
+            alert('productId is null');
+            return;
+        }
+
+        this.getProductById();
+    },
     methods:{
         handleUpdateClick(){
             console.log('update click');
+            this.description = tinyMCE.activeEditor.getContent();
             this.updateProduct();
         },
         handleOnMainChange(val){
@@ -100,6 +118,7 @@ var app = new Vue({
                 mainPicUrl: this.mainPicUrl,
                 rewordPoints: this.rewordPoints,
                 sortOrder: this.sortOrder,
+                productAbstract: this.productAbstract,
                 description: this.description,
                 otherPicUrls: this.otherPicUrls
               })
@@ -130,6 +149,7 @@ var app = new Vue({
                 app.status = product.status;
                 app.rewordPoints = product.rewordPoints;
                 app.sortOrder = product.sortOrder;
+                app.productAbstract = product.productAbstract;
                 app.description = product.description;
                 app.mainPicUrl = product.mainPicUrl;
                 app.otherPicUrls = product.otherPicUrls;
