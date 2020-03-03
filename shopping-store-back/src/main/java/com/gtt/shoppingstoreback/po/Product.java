@@ -1,20 +1,27 @@
-package com.gtt.shoppingstoreback.dto.out;
+package com.gtt.shoppingstoreback.po;
 
-import java.util.List;
-
-public class ProductShowOut {
+public class Product {
     private Integer productId;
-    private String productName;
+
     private String productCode;
-    private  Double price;
+
+    private String productName;
+
+    private String productAbstract;
+
+    private Double price;
+
     private Double discount;
-    private String mianPicUrl;
-    private Byte status;
-    private String description;
+
     private Integer stockQuantity;
+
+    private Byte status;
+
+    private String mainPicUrl;
+
     private Integer rewordPoints;
+
     private Integer sortOrder;
-    private List<String> otherPicUrls;
 
     public Integer getProductId() {
         return productId;
@@ -24,21 +31,28 @@ public class ProductShowOut {
         this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-
     public String getProductCode() {
         return productCode;
     }
 
     public void setProductCode(String productCode) {
-        this.productCode = productCode;
+        this.productCode = productCode == null ? null : productCode.trim();
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
+    }
+
+    public String getProductAbstract() {
+        return productAbstract;
+    }
+
+    public void setProductAbstract(String productAbstract) {
+        this.productAbstract = productAbstract == null ? null : productAbstract.trim();
     }
 
     public Double getPrice() {
@@ -57,12 +71,12 @@ public class ProductShowOut {
         this.discount = discount;
     }
 
-    public String getMianPicUrl() {
-        return mianPicUrl;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setMianPicUrl(String mianPicUrl) {
-        this.mianPicUrl = mianPicUrl;
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public Byte getStatus() {
@@ -73,20 +87,12 @@ public class ProductShowOut {
         this.status = status;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMainPicUrl() {
+        return mainPicUrl;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
+    public void setMainPicUrl(String mainPicUrl) {
+        this.mainPicUrl = mainPicUrl == null ? null : mainPicUrl.trim();
     }
 
     public Integer getRewordPoints() {
@@ -103,13 +109,5 @@ public class ProductShowOut {
 
     public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
-    }
-
-    public List<String> getOtherPicUrls() {
-        return otherPicUrls;
-    }
-
-    public void setOtherPicUrls(List<String> otherPicUrls) {
-        this.otherPicUrls = otherPicUrls;
     }
 }

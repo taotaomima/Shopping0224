@@ -5,7 +5,7 @@ import java.util.List;
 public class PageOut<T> {
     private Integer pageNum;
     private Integer pageSize;
-    private Integer total;
+    private Long total;
     private List<T> list;
 
     public Integer getPageNum() {
@@ -24,11 +24,11 @@ public class PageOut<T> {
         this.pageSize = pageSize;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 

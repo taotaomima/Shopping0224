@@ -60,7 +60,7 @@ var app = new Vue({
             this.$message.success('添加购物车成功');
         },
         getProductById(){
-            axios.get('/product/findbyId', {
+            axios.get('/product/getById', {
                 params: {
                   productId:this.productId
                 }
