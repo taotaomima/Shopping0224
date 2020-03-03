@@ -43,12 +43,10 @@
       #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{newsSubscribed,jdbcType=BIT}, 
       #{rewordPoints,jdbcType=INTEGER}, #{defaultAddressId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.gtt.shoppingstoreback.po.Customer">
+  <insert id="insertSelective" parameterType="com.gtt.shoppingstoreback.po.Customer" useGeneratedKeys="true" keyProperty="customerId">
     insert into jcart_customer
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="customerId != null">
-        customer_id,
-      </if>
+
       <if test="username != null">
         username,
       </if>
@@ -90,9 +88,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="customerId != null">
-        #{customerId,jdbcType=INTEGER},
-      </if>
+
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
@@ -196,4 +192,18 @@
       default_address_id = #{defaultAddressId,jdbcType=INTEGER}
     where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
+
+  <select id="getByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_customer
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_customer
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
 </mapper>
