@@ -1,42 +1,43 @@
 package com.gtt.shoppingstoreback.dto.in;
 
+import java.util.List;
+
 public class OrderCreateIn {
-    private Long orderId;
-    private Integer customerId;
-    private String shipAddress;
+    private Integer shipAddressId;
     private Double shipPrice;
+    private Short shipMethod;
     private Integer rewordPoints;
     private Short payMethod;
-    private Short shipMethod;
     private Byte status;
-    private String productName;
-    private Double unitPrice;
-    private Integer quantity;
+    private Integer invoiceAddressId;
+    private String comment;
+    private Double invoicePrice;
+    private List<OrderProductIn> orderProductInList;
     private Double totalPrice;
-    private Long createTimeTamp;
 
-    public Long getOrderId() {
-        return orderId;
+
+    public Integer getShipAddressId() {
+        return shipAddressId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setShipAddressId(Integer shipAddressId) {
+        this.shipAddressId = shipAddressId;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Integer getInvoiceAddressId() {
+        return invoiceAddressId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setInvoiceAddressId(Integer invoiceAddressId) {
+        this.invoiceAddressId = invoiceAddressId;
     }
 
-    public String getShipAddress() {
-        return shipAddress;
+    public String getComment() {
+        return comment;
     }
 
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Double getShipPrice() {
@@ -79,30 +80,6 @@ public class OrderCreateIn {
         this.status = status;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Double getTotalPrice() {
         return totalPrice;
     }
@@ -111,11 +88,19 @@ public class OrderCreateIn {
         this.totalPrice = totalPrice;
     }
 
-    public Long getCreateTimeTamp() {
-        return createTimeTamp;
+    public Double getInvoicePrice() {
+        return invoicePrice;
     }
 
-    public void setCreateTimeTamp(Long createTimeTamp) {
-        this.createTimeTamp = createTimeTamp;
+    public void setInvoicePrice(Double invoicePrice) {
+        this.invoicePrice = invoicePrice;
+    }
+
+    public List<OrderProductIn> getOrderProductInList() {
+        return orderProductInList;
+    }
+
+    public void setOrderProductInList(List<OrderProductIn> orderProductInList) {
+        this.orderProductInList = orderProductInList;
     }
 }

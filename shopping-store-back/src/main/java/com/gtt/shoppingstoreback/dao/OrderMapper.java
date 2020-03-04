@@ -1,6 +1,8 @@
 package com.gtt.shoppingstoreback.dao;
 
+import com.github.pagehelper.Page;
 import com.gtt.shoppingstoreback.po.Order;
+import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Long orderId);
@@ -14,4 +16,6 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    Page<Order> getByCustomerId(@Param("customerId") Integer customerId);
 }

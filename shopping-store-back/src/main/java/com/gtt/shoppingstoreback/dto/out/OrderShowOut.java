@@ -1,5 +1,9 @@
 package com.gtt.shoppingstoreback.dto.out;
 
+import com.gtt.shoppingstoreback.vo.OrderProductVo;
+
+import java.util.List;
+
 public class OrderShowOut {
     private Long orderId;;
     private Integer customerId;
@@ -18,7 +22,34 @@ public class OrderShowOut {
     private String productCode;
     private Double unitPrice;
     private Integer quantity;
+    private String comment;
 
+    private List<OrderProductVo> orderProductVos;
+    private List<OrderHistoryListOut> orderHistoryListOuts;
+
+    public List<OrderHistoryListOut> getOrderHistoryListOuts() {
+        return orderHistoryListOuts;
+    }
+
+    public void setOrderHistoryListOuts(List<OrderHistoryListOut> orderHistoryListOuts) {
+        this.orderHistoryListOuts = orderHistoryListOuts;
+    }
+
+    public List<OrderProductVo> getOrderProductVos() {
+        return orderProductVos;
+    }
+
+    public void setOrderProductVos(List<OrderProductVo> orderProductVos) {
+        this.orderProductVos = orderProductVos;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public Long getOrderId() {
         return orderId;

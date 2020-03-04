@@ -103,4 +103,12 @@
       customer_notified = #{customerNotified,jdbcType=BIT}
     where order_history_id = #{orderHistoryId,jdbcType=BIGINT}
   </update>
+
+ <!-- getByOrderId-->
+  <select id="getByOrderId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_order_history
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
 </mapper>
