@@ -11,7 +11,7 @@ public class CustomerListOut {
     private String avatarUrl;
     private Byte status;
 
-    private Date createTime;
+    private Long createTime;
 
     private Boolean newsSubscribed;
 
@@ -41,11 +41,11 @@ public class CustomerListOut {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 

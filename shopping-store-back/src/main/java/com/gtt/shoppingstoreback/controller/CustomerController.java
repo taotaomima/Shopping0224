@@ -28,14 +28,14 @@ public class CustomerController {
     private CustomerService customerService;
     @Resource
     private JWTUtil jwtUtil;
-    @Resource
+    /*@Resource
     private SecureRandom secureRandom;
     @Resource
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
-
+*/
     private HashMap<String, String> emailPwdResetCodeMap = new HashMap();
 
     @PostMapping("/register")
@@ -69,7 +69,7 @@ public class CustomerController {
         customerGetProfileOut.setMobileVerified(customer.getMobileVerified());
         customerGetProfileOut.setEmail(customer.getEmail());
         customerGetProfileOut.setEmailVerified(customer.getEmailVerified());
-
+        customerGetProfileOut.setCustomerId(customer.getCustomerId());
         return customerGetProfileOut;
     }
 
@@ -100,7 +100,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/getPwdRestCode")
+  /*  @GetMapping("/getPwdRestCode")
     public void getPwdRestCode(@RequestParam String email) throws ClientException {
         Customer customer = customerService.getByEmail(email);
         if (customer == null){
@@ -115,7 +115,7 @@ public class CustomerController {
         message.setText(hex);
         mailSender.send(message);
         emailPwdResetCodeMap.put("PwdResetCode"+email, hex);
-    }
+    }*/
 
     @PostMapping("/resetCode")
     public void resetCode(@RequestBody CustomerRestPwdIn customerRestPwdIn){ }
