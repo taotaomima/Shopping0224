@@ -1,5 +1,7 @@
 package com.gtt.shoppingproductback.dto.out;
 
+import com.gtt.shoppingproductback.vo.OrderProductVo;
+
 import java.util.List;
 
 public class OrderShowOut {
@@ -18,7 +20,7 @@ public class OrderShowOut {
     private String invoicAddress;
     private Double invoicPrice;
     private String comment;
-    private List<OrderProductShowOut> list;
+    private List<OrderProductVo> orderProductVos;
 
     public Long getOrderId() {
         return orderId;
@@ -140,11 +142,11 @@ public class OrderShowOut {
         this.comment = comment;
     }
 
-    public List<OrderProductShowOut> getList() {
-        return list;
+    public List<OrderProductVo> getOrderProductVos() {
+        return orderProductVos;
     }
 
-    public void setList(List<OrderProductShowOut> list) {
-        this.list = list;
+    public void setOrderProductVos(List<OrderProductVo> orderProductVos) {
+        this.orderProductVos = orderProductVos;
     }
 }

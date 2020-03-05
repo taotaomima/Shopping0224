@@ -1,5 +1,7 @@
 package com.gtt.shoppingproductback.dao;
 
+import com.github.pagehelper.Page;
+import com.gtt.shoppingproductback.dto.out.OrderListOut;
 import com.gtt.shoppingproductback.po.Order;
 
 public interface OrderMapper {
@@ -14,4 +16,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+
+    Page<OrderListOut> search();
 }

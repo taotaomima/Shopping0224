@@ -1,6 +1,5 @@
 package com.gtt.shoppingproductback.dto.out;
 
-import java.util.Date;
 
 public class OrderListOut {
     private Long orderId;
