@@ -1,14 +1,24 @@
 package com.gtt.shoppingproductback.dto.out;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
+
 public class OrderListOut {
     private Long orderId;
     private Integer customerId;
     private String customerName;
     private Byte status;
     private Double totalPrice;
-    private Long createTimeTamp;
-    private Long updateTimeTamp;
+    @JsonIgnore
+    private Date createTime;
+    private Long createTimestamp;
+    @JsonIgnore
+    private Date updateTime;
+    private Long updateTimestamp;
+
+
 
     public Long getOrderId() {
         return orderId;
@@ -50,19 +60,27 @@ public class OrderListOut {
         this.totalPrice = totalPrice;
     }
 
-    public Long getCreateTimeTamp() {
-        return createTimeTamp;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateTimeTamp(Long createTimeTamp) {
-        this.createTimeTamp = createTimeTamp;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Long getUpdateTimeTamp() {
-        return updateTimeTamp;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateTimeTamp(Long updateTimeTamp) {
-        this.updateTimeTamp = updateTimeTamp;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Long getCreateTimestamp() {
+        return this.createTime == null ? null : this.createTime.getTime();
+    }
+
+    public Long getUpdateTimestamp() {
+        return this.updateTime == null ? null : this.updateTime.getTime();
     }
 }

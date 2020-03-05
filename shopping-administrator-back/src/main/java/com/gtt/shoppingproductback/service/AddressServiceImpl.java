@@ -1,14 +1,10 @@
 package com.gtt.shoppingproductback.service;
 
-import com.alibaba.fastjson.JSON;
 import com.gtt.shoppingproductback.dao.AddressMapper;
-import com.gtt.shoppingproductback.dto.out.AddressListOut;
 import com.gtt.shoppingproductback.po.Address;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 @Service
 public class AddressServiceImpl implements AddressService {
