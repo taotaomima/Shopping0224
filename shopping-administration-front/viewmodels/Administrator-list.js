@@ -23,7 +23,7 @@ var app = new Vue({
         handleDelete(index,row){
             console.log('delete click');
             if(confirm("确认删除吗？")){
-                this.deleteAdministrator(row.admimnistratId);
+                this.deleteAdministrator(row.adminstratorId);
             }
         },
         handleBatchDeleteClick() {
