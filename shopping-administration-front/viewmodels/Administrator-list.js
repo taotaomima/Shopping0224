@@ -26,7 +26,7 @@ var app = new Vue({
                 this.deleteAdministrator(row.adminstratorId);
             }
         },
-        handleBatchDeleteClick() {
+        handleDetchDeleteClick() {
             console.log('batch delete click');
             if (confirm("确认删除？")) {
                 this.batchDeleteAdministrators();
