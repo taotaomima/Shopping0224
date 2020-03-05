@@ -1,11 +1,11 @@
 package com.gtt.shoppingproductback.service;
 
-import com.gtt.shoppingproductback.dto.out.AddressListOut;
+import com.gtt.shoppingproductback.po.Address;
 
 
 import java.util.List;
 
 public interface AddressService {
-    List<AddressListOut> getList(Integer customerId);
-
+    List<Address> getList(Integer customerId);
+    Address getById(Integer addressId);
 }

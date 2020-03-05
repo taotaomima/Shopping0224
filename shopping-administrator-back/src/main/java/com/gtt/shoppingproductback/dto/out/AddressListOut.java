@@ -5,9 +5,11 @@ import java.util.List;
 public class AddressListOut {
     private Integer addressId;
     private Integer customerId;
-    private List<String> content;
     private String receiverName;
     private String receiverMobile;
+    private String content;
+    private String tag;
+
 
     public Integer getAddressId() {
         return addressId;
@@ -25,12 +27,20 @@ public class AddressListOut {
         this.customerId = customerId;
     }
 
-    public List<String> getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(List<String> content) {
+    public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getReceiverName() {

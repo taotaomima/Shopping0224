@@ -19,5 +19,5 @@ public interface AddressMapper {
 
     int updateByPrimaryKey(Address record);
     List<Address> selectByCustomerId(Integer customerId);
-   // Address selectByCustomerId(Integer customerId);
+
 }

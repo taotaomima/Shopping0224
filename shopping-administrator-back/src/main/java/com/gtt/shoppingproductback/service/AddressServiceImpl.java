@@ -17,19 +17,15 @@ public class AddressServiceImpl implements AddressService {
    private AddressMapper addressMapper;
 
     @Override
-    public List<AddressListOut> getList(Integer customerId) {
+    public List<Address> getList(Integer customerId) {
         List<Address> addresses = addressMapper.selectByCustomerId(customerId);
-        List<AddressListOut> addressListOuts = new ArrayList<>();
-        for (Address address : addresses) {
-            String content = address.getContent();//地址信息
-            AddressListOut addressListOut = new AddressListOut();
-            addressListOut.setCustomerId(customerId);
-            addressListOut.setContent(JSON.parseArray(content,String.class));
-            addressListOut.setReceiverMobile(address.getReceiverMobile());
-            addressListOut.setReceiverName(address.getReceiverName());
-            addressListOuts.add(addressListOut);
-        }
-        return addressListOuts;
+        return addresses;
+    }
+
+    @Override
+    public Address getById(Integer addressId) {
+        Address address = addressMapper.selectByPrimaryKey(addressId);
+        return address;
     }
 
 }
