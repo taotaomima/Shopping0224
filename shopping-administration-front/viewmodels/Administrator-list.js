@@ -52,7 +52,7 @@ var app = new Vue({
                 });
         },
         batchDeleteAdministrators() {
-            axios.post('/admin/batchDelete', this.selectedAdministratorIds)
+            axios.post('/admin/betchDelete', this.selectedAdministratorIds)
                 .then(function (response) {
                     console.log(response);
                     alert('批删成功');
