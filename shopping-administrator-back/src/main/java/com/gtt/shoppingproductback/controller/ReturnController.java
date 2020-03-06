@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ReturnController {
 
     @GetMapping("/search")
-    public PageOut<RetuenListOut> search(RetuenSearchIn retuenSearchIn,@RequestParam Integer pageNum){return null;}
+    public PageOut<RetuenListOut> search(RetuenSearchIn retuenSearchIn,@RequestParam(required = false,defaultValue = "1") Integer pageNum){return null;}
 
     @GetMapping("/getById")
     public ReturnShowOut getById(@RequestParam Integer returnId){return null;}

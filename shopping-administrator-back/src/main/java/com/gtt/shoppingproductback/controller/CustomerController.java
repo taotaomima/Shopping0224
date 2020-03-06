@@ -27,7 +27,7 @@ public class CustomerController {
     private AddressService addressService;
 
     @GetMapping("/search")
-    public PageOut<CustomerListOut> search(CustomerSearchIn customerSearchIn,@RequestParam Integer pageNum){
+    public PageOut<CustomerListOut> search(CustomerSearchIn customerSearchIn,@RequestParam(required = false,defaultValue = "1") Integer pageNum){
         Page<Customer> page = customerService.search(pageNum);
         List<CustomerListOut> customerListOuts = page.stream().map(customer -> {
             CustomerListOut customerListOut = new CustomerListOut();
