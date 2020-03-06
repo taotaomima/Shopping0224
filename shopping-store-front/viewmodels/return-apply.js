@@ -14,6 +14,11 @@ var app = new Vue({
         comment: '',
         opened: '',
     },
+    computed: {
+        orderTimestamp() {
+            return this.orderTime.getTime();
+        }
+    },
     mounted(){
         console.log("view mmounted");
         var url = new URL(location.href);
