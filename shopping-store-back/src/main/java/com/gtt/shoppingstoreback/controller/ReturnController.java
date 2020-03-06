@@ -51,7 +51,7 @@ public class ReturnController {
         return returnId;
     }
 
-    @GetMapping("/getlList")
+    @GetMapping("/getList")
     public PageOut<ReturnListOut> list(@RequestAttribute Integer customerId,@RequestParam(required = false,defaultValue = "1") Integer pageNum){
         Page<Return> page = returnService.list(pageNum, customerId);
         List<ReturnListOut> returnListOuts = page.stream().map(iReturn -> {
