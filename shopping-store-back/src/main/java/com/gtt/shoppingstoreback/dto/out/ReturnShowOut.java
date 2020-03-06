@@ -1,10 +1,13 @@
 package com.gtt.shoppingstoreback.dto.out;
 
+import java.util.List;
+
 public class ReturnShowOut {
     private Integer returnId;
     private Long orderId;
     private Long orderTimesTamp;
     private Long createTimeTamp;
+    private Long updateTimeTamp;
     private String productName;
     private String productCode;
     private Integer quantity;
@@ -16,6 +19,23 @@ public class ReturnShowOut {
     private String email;
     private String mobile;
     private String comment;
+    private List<ReturnHistoryListOut> returnHistoryListOuts;
+
+    public List<ReturnHistoryListOut> getReturnHistoryListOuts() {
+        return returnHistoryListOuts;
+    }
+
+    public void setReturnHistoryListOuts(List<ReturnHistoryListOut> returnHistoryListOuts) {
+        this.returnHistoryListOuts = returnHistoryListOuts;
+    }
+
+    public Long getUpdateTimeTamp() {
+        return updateTimeTamp;
+    }
+
+    public void setUpdateTimeTamp(Long updateTimeTamp) {
+        this.updateTimeTamp = updateTimeTamp;
+    }
 
     public Integer getReturnId() {
         return returnId;

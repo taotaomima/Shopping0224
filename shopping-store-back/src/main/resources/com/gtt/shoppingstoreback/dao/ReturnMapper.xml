@@ -35,7 +35,7 @@
     delete from jcart_return
     where return_id = #{returnId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.gtt.shoppingstoreback.po.Return">
+  <insert id="insert" parameterType="com.gtt.shoppingstoreback.po.Return" >
     insert into jcart_return (return_id, order_id, order_time, 
       customer_id, customer_name, mobile, 
       email, status, action, 
@@ -49,12 +49,10 @@
       #{reason,jdbcType=TINYINT}, #{opened,jdbcType=BIT}, #{comment,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.gtt.shoppingstoreback.po.Return">
+  <insert id="insertSelective" parameterType="com.gtt.shoppingstoreback.po.Return" useGeneratedKeys="true" keyProperty="returnId">
     insert into jcart_return
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="returnId != null">
-        return_id,
-      </if>
+
       <if test="orderId != null">
         order_id,
       </if>
@@ -105,9 +103,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="returnId != null">
-        #{returnId,jdbcType=INTEGER},
-      </if>
+
       <if test="orderId != null">
         #{orderId,jdbcType=BIGINT},
       </if>
@@ -232,4 +228,13 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where return_id = #{returnId,jdbcType=INTEGER}
   </update>
+
+
+<!--  selectPageByCustomerId-->
+  <select id="selectPageByCustomerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from jcart_return
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </select>
 </mapper>
