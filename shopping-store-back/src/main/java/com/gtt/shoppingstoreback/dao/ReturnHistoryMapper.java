@@ -1,6 +1,9 @@
 package com.gtt.shoppingstoreback.dao;
 
 import com.gtt.shoppingstoreback.po.ReturnHistory;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ReturnHistoryMapper {
     int deleteByPrimaryKey(Long returnHistoryId);
@@ -14,4 +17,7 @@ public interface ReturnHistoryMapper {
     int updateByPrimaryKeySelective(ReturnHistory record);
 
     int updateByPrimaryKey(ReturnHistory record);
+
+
+    List<ReturnHistory> getByReturnId(@Param("returnId") Integer returnId);
 }
