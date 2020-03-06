@@ -4,11 +4,20 @@ public class RetuenListOut {
     private Integer retuenId;
     private Long orderId;
     private Integer customerId;
+    private String customerName;
     private String productCode;
     private String prodeuctName;
     private Byte status;
     private Long createTimeTamp;
     private Long updateTimeTamp;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
     public Integer getRetuenId() {
         return retuenId;
