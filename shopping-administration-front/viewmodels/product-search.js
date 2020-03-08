@@ -10,7 +10,7 @@ var app = new Vue({
     },
     methods:{
         handlePageChange(val){
-            console.log('page change');
+            console.log('page change',val);
             this.pageNum= val;
             this.searchProduct();
         },
