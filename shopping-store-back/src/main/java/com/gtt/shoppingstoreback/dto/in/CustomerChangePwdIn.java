@@ -1,15 +1,15 @@
 package com.gtt.shoppingstoreback.dto.in;
 
 public class CustomerChangePwdIn {
-    private String orderPwd;
+    private String originPwd;
     private String newPwd;
 
-    public String getOrderPwd() {
-        return orderPwd;
+    public String getOriginPwd() {
+        return originPwd;
     }
 
-    public void setOrderPwd(String orderPwd) {
-        this.orderPwd = orderPwd;
+    public void setOriginPwd(String originPwd) {
+        this.originPwd = originPwd;
     }
 
     public String getNewPwd() {

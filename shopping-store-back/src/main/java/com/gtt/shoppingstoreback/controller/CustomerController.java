@@ -28,14 +28,14 @@ public class CustomerController {
     private CustomerService customerService;
     @Resource
     private JWTUtil jwtUtil;
-    /*@Resource
+    @Resource
     private SecureRandom secureRandom;
     @Resource
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
-*/
+
     private HashMap<String, String> emailPwdResetCodeMap = new HashMap();
 
     @PostMapping("/register")
@@ -88,7 +88,7 @@ public class CustomerController {
     public void changePwd(@RequestBody CustomerChangePwdIn customerChangePwdIn,@RequestAttribute Integer customerId) throws ClientException {
         Customer customer = customerService.getById(customerId);
         String encPwdDB = customer.getEncryptedPassword();
-        BCrypt.Result result = BCrypt.verifyer().verify(customerChangePwdIn.getOrderPwd().toCharArray(), encPwdDB);
+        BCrypt.Result result = BCrypt.verifyer().verify(customerChangePwdIn.getOriginPwd().toCharArray(), encPwdDB);
 
         if (result.verified) {
             String newPwd = customerChangePwdIn.getNewPwd();
@@ -100,7 +100,7 @@ public class CustomerController {
         }
     }
 
-  /*  @GetMapping("/getPwdRestCode")
+    @GetMapping("/getPwdRestCode")
     public void getPwdRestCode(@RequestParam String email) throws ClientException {
         Customer customer = customerService.getByEmail(email);
         if (customer == null){
@@ -115,7 +115,7 @@ public class CustomerController {
         message.setText(hex);
         mailSender.send(message);
         emailPwdResetCodeMap.put("PwdResetCode"+email, hex);
-    }*/
+    }
 
     @PostMapping("/resetCode")
     public void resetCode(@RequestBody CustomerRestPwdIn customerRestPwdIn){ }
