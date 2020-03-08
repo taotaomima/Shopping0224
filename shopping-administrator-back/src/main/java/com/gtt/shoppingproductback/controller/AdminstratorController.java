@@ -183,7 +183,7 @@ public class AdminstratorController {
         emailPwdResetCodeMap.put(email,hex);
     }
 
-    @PostMapping("/resetCode")
+    @PostMapping("/resetPwd")
     public void resetCode(@RequestBody AdminstratorRestPwdIn adminstratorRestPwdIn) throws ClientException {
         String email = adminstratorRestPwdIn.getEmail();
         if(email==null){
