@@ -9,7 +9,7 @@ var app = new Vue({
         this.searchOrder();
     },
     methods:{
-        handlePageChange() {
+        handlePageChange(val) {
             console.log('page changed', val);
             this.pageNum = val;
             this.searchOrder();
