@@ -24,4 +24,5 @@ public interface AdministratorMapper {
     int betchDelete(@Param("administratorIds") List<Integer> administratorIds);
 
     Page<Administrator> getList();
+    Administrator getByEamil(@Param("email") String email);
  }

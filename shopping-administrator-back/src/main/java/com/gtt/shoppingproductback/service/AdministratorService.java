@@ -13,4 +13,6 @@ public interface AdministratorService {
     void delete(Integer administratorId);
     void betchDelete(List<Integer> administratorIds);
     Page<Administrator> getList(Integer pageNum);
+
+    Administrator getByEamil(String email);
 }

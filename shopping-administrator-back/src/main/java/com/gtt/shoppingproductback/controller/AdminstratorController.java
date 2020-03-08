@@ -11,10 +11,18 @@ import com.gtt.shoppingproductback.po.Administrator;
 import com.gtt.shoppingproductback.service.AdministratorService;
 import com.gtt.shoppingproductback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.xml.bind.DatatypeConverter;
+import java.security.SecureRandom;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,6 +34,14 @@ public class AdminstratorController {
     private AdministratorService administratorService;
     @Autowired
     private JWTUtil jwtUtil;
+    @Autowired
+    private SecureRandom secureRandom;
+    @Resource
+    private MailSender mailSender;
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+    private Map<String, String> emailPwdResetCodeMap = new HashMap<>();
+
 
     @GetMapping("/login")
     public AdministratorLoginOutDTO login(AdminstratorLoginIn adminstratorLoginIn) throws ClientException {
@@ -152,9 +168,50 @@ public class AdminstratorController {
     public void changePwd(@RequestBody AdminstratorChangePwdIn adminstratorChangePwdIn, @RequestAttribute Integer adminstratorId){}
 
     @GetMapping("/getPwdRestCode")
-    public String getPwdRestCode(@RequestParam String email){return null;}
+    public void getPwdRestCode(@RequestParam String email){
+        byte[] bytes = secureRandom.generateSeed(3);
+        //转为十六进制
+        String hex = DatatypeConverter.printHexBinary(bytes);
+        //发送到邮箱
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromEmail);
+        message.setTo(email);
+        message.setSubject("jcart管理端管理员密码重置");
+        message.setText(hex);
+        mailSender.send(message);
+        //发送消息到mq
+        emailPwdResetCodeMap.put(email,hex);
+    }
 
     @PostMapping("/resetCode")
-    public void resetCode(@RequestBody AdminstratorRestPwdIn adminstratorRestPwdIn){}
+    public void resetCode(@RequestBody AdminstratorRestPwdIn adminstratorRestPwdIn) throws ClientException {
+        String email = adminstratorRestPwdIn.getEmail();
+        if(email==null){
+            throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PWDRESET_EMAIL_NONE_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PWDRESET_EMAIL_NONE_ERRMSG);
+        }
+        String innerRestCode = emailPwdResetCodeMap.get(email);
+        if (innerRestCode == null) {
+            throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PWDRESET_INNER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PWDRESET_INNER_RESETCODE_NONE_ERRMSG);
+        }
+        String outerRestCode = adminstratorRestPwdIn.getRestCode();
+        if(outerRestCode==null){
+            throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PWDRESET_OUTER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PWDRESET_OUTER_RESETCODE_NONE_ERRMSG);
+        }
+        if(!outerRestCode.equalsIgnoreCase(innerRestCode)){
+            throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PWDRESET_RESETCODE_INVALID_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PWDRESET_RESETCODE_INVALID_ERRMSG);
+        }
+
+        Administrator administrator=administratorService.getByEamil(email);
+        if (administrator == null){
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRMSG);
+        }
+        String newPwd = adminstratorRestPwdIn.getNewPwd();
+        if (newPwd == null){
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_NEWPWD_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_NEWPWD_NOT_EXIST_ERRMSG);
+        }
+        String hashToString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+        administrator.setEncryptedPassword(hashToString);
+        administratorService.update(administrator);
+    }
     }
 
