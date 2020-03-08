@@ -9,8 +9,10 @@ var app = new Vue({
         this.getReturnSearch();
     },
     methods:{
-        handlePageChange(){
-
+        handlePageChange(val) {
+            console.log('page changed', val);
+            this.pageNum = val;
+            this.getReturnSearch();
         },
         getReturnSearch(){
             axios.get('/return/getList', {
