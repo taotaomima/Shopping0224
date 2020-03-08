@@ -15,7 +15,7 @@ var app = new Vue({
     },
     methods:{
         handlePageChange(val) {
-            console.log('page changed');
+            console.log('page changed',val);
             this.pageNum = val;
             this.searchCustomer();
         },
