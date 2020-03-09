@@ -118,7 +118,37 @@ public class CustomerController {
     }
 
     @PostMapping("/resetPwd")
-    public void resetCode(@RequestBody CustomerRestPwdIn customerRestPwdIn){ }
+    public void resetPwd(@RequestBody CustomerRestPwdIn customerRestPwdIn) throws ClientException {
+        String email = customerRestPwdIn.getEmail();
+        if (email == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_EMAIL_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_EMAIL_NONE_ERRMSG);
+        }
+        String innerRestCode = emailPwdResetCodeMap.get(email);
+        if (innerRestCode == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_INNER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_INNER_RESETCODE_NONE_ERRMSG);
+        }
+        String outerResetCode = customerRestPwdIn.getRestCode();
+        if (outerResetCode == null) {
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_OUTER_RESETCODE_NONE_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_OUTER_RESETCODE_NONE_ERRMSG);
+        }
+        if (!outerResetCode.equalsIgnoreCase(innerRestCode)){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_PWDRESET_RESETCODE_INVALID_ERRCODE, ClientExceptionConstant.CUSTOMER_PWDRESET_RESETCODE_INVALID_ERRMSG);
+        }
+        Customer customer = customerService.getByEmail(email);
+        if (customer == null){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_EMAIL_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_EMAIL_NOT_EXIST_ERRMSG);
+        }
+        String newPwd = customerRestPwdIn.getNewPwd();
+        if (newPwd == null){
+            throw new ClientException(ClientExceptionConstant.CUSTOMER_NEWPWD_NOT_EXIST_ERRCODE, ClientExceptionConstant.CUSTOMER_NEWPWD_NOT_EXIST_ERRMSG);
+        }
+
+        String hashToString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+        customer.setEncryptedPassword(hashToString);
+        customerService.update(customer);
+        //删除email所对应的code,避免code重复利用
+        emailPwdResetCodeMap.remove(email);
+    }
 
 
 
