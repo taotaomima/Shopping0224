@@ -165,7 +165,20 @@ public class AdminstratorController {
 
 
     @GetMapping("/changePwd")
-    public void changePwd(@RequestBody AdminstratorChangePwdIn adminstratorChangePwdIn, @RequestAttribute Integer adminstratorId){}
+    public void changePwd(@RequestBody AdminstratorChangePwdIn adminstratorChangePwdIn, @RequestAttribute Integer adminstratorId) throws ClientException {
+        Administrator administrator = administratorService.getById(adminstratorId);
+        String encryptedPassword = administrator.getEncryptedPassword();
+        BCrypt.Result result = BCrypt.verifyer().verify(adminstratorChangePwdIn.getOrderPwd().toCharArray(), encryptedPassword);
+        if(result.verified){
+            String newPwd = adminstratorChangePwdIn.getNewPwd();
+            String hashToString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
+            administrator.setEncryptedPassword(hashToString);
+            administratorService.update(administrator);
+        }else{
+            throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PASSWORD_INVALID_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PASSWORD_INVALID_ERRMSG);
+        }
+
+    }
 
     @GetMapping("/getPwdRestCode")
     public void getPwdRestCode(@RequestParam String email){
@@ -212,6 +225,8 @@ public class AdminstratorController {
         String hashToString = BCrypt.withDefaults().hashToString(12, newPwd.toCharArray());
         administrator.setEncryptedPassword(hashToString);
         administratorService.update(administrator);
+
+        emailPwdResetCodeMap.remove(email);
     }
     }
 
