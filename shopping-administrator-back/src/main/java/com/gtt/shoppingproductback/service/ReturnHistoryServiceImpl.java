@@ -4,6 +4,7 @@ import com.gtt.shoppingproductback.dao.ReturnHistoryMapper;
 import com.gtt.shoppingproductback.po.Return;
 import com.gtt.shoppingproductback.po.ReturnHistory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class ReturnHistoryServiceImpl implements ReturnHistoryService {
     }
 
     @Override
+    @Transactional
     public Long carete(ReturnHistory returnHistory) {
         returnHistoryMapper.insertSelective(returnHistory);
         Long returnHistoryId = returnHistory.getReturnHistoryId();

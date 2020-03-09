@@ -117,7 +117,7 @@ public class CustomerController {
         emailPwdResetCodeMap.put("PwdResetCode"+email, hex);
     }
 
-    @PostMapping("/resetCode")
+    @PostMapping("/resetPwd")
     public void resetCode(@RequestBody CustomerRestPwdIn customerRestPwdIn){ }
 
 
