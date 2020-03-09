@@ -18,6 +18,7 @@ import com.gtt.shoppingstoreback.po.OrderDetail;
 import com.gtt.shoppingstoreback.po.OrderHistory;
 import com.gtt.shoppingstoreback.vo.OrderProductVo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -38,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderHistoryService orderHistoryService;
 
     @Override
+    @Transactional
     public Long checkOut(OrderCreateIn orderCreateIn,Integer customerId) {
         List<OrderProductIn> orderProductInList = orderCreateIn.getOrderProductInList();
         List<OrderProductVo> orderProductVos = orderProductInList.stream().map(orderProductIn -> {
