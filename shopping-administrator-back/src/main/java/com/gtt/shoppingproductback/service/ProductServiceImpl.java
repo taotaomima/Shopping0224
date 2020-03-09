@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.gtt.shoppingproductback.dao.ProductDetailMapper;
 import com.gtt.shoppingproductback.dao.ProductMapper;
 import com.gtt.shoppingproductback.dto.in.ProductCreateIn;
+import com.gtt.shoppingproductback.dto.in.ProductSearchIn;
 import com.gtt.shoppingproductback.dto.in.ProductUpdateIn;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
 import com.gtt.shoppingproductback.dto.out.ProductShowOut;
@@ -94,9 +95,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductListOut> search(Integer pageNum) {
+    public Page<ProductListOut> search(Integer pageNum, ProductSearchIn productSearchIn) {
         PageHelper.startPage(pageNum,10);
-        Page<ProductListOut> page=productMapper.search();
+        Page<ProductListOut> page=productMapper.search(productSearchIn.getProductCode(),productSearchIn.getStatus(),
+                productSearchIn.getStockQuantity(),productSearchIn.getPrice(),productSearchIn.getProductName());
         return page;
     }
 

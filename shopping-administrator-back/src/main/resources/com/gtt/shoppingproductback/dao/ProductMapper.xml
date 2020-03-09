@@ -182,6 +182,23 @@
     select
     <include refid="Base_Column_List" />
     from jcart_product
+    <where>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+       and status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="stockQuantity != null">
+        and stock_quantity &lt;= #{stockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        and price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="productName != null">
+        and product_name like concat('%',#{productName},'%')
+      </if>
+    </where>
   </select>
 
 </mapper>

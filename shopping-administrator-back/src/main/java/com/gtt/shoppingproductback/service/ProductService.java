@@ -2,6 +2,7 @@ package com.gtt.shoppingproductback.service;
 
 import com.github.pagehelper.Page;
 import com.gtt.shoppingproductback.dto.in.ProductCreateIn;
+import com.gtt.shoppingproductback.dto.in.ProductSearchIn;
 import com.gtt.shoppingproductback.dto.in.ProductUpdateIn;
 import com.gtt.shoppingproductback.dto.out.PageOut;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
@@ -16,7 +17,7 @@ public interface ProductService {
     void delete(Integer productId);
     void betchDelete(List<Integer> productIds);
 
-    Page<ProductListOut> search(Integer pageNum);
+    Page<ProductListOut> search(Integer pageNum, ProductSearchIn productSearchIn);
 
     ProductShowOut getById(Integer productId);
 }

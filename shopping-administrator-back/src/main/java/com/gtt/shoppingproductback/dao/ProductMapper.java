@@ -1,5 +1,6 @@
 package com.gtt.shoppingproductback.dao;
 
+import at.favre.lib.bytes.Bytes;
 import com.github.pagehelper.Page;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
 import com.gtt.shoppingproductback.dto.out.ProductShowOut;
@@ -23,7 +24,7 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
-    Page<ProductListOut> search();
+    Page<ProductListOut> search(@Param("productCode") String productCode, @Param("status") Byte status,@Param("stockQuantity") Integer stockQuantity,@Param("price") Double price,@Param("productName") String productName);
 
     ProductShowOut getById(Integer productId);
 
