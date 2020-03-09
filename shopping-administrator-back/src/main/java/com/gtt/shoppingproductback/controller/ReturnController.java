@@ -24,7 +24,7 @@ public class ReturnController {
 
     @GetMapping("/search")
     public PageOut<RetuenListOut> search(RetuenSearchIn retuenSearchIn,@RequestParam(required = false,defaultValue = "1") Integer pageNum){
-        Page<Return> page = returnService.search(pageNum);
+        Page<Return> page = returnService.search(retuenSearchIn,pageNum);
         List<RetuenListOut> retuenListOuts = page.stream().map(aReturn -> {
             RetuenListOut retuenListOut = new RetuenListOut();
             retuenListOut.setRetuenId(aReturn.getReturnId());
