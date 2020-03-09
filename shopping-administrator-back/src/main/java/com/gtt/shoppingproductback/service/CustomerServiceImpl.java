@@ -21,9 +21,10 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public Page<Customer> search(Integer pageNum) {
+    public Page<Customer> search(CustomerSearchIn customerSearchIn,Integer pageNum) {
         PageHelper.startPage(pageNum,5);
-        Page<Customer> search = customerMapper.search();
+        Page<Customer> search = customerMapper.search(customerSearchIn.getUsername(),customerSearchIn.getRealName(),customerSearchIn.getStatus(),
+                customerSearchIn.getEmail(),customerSearchIn.getMobile());
         return search;
     }
 
