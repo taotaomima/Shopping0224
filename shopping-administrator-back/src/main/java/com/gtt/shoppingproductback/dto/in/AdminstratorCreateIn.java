@@ -6,7 +6,7 @@ public class AdminstratorCreateIn {
     private String realName;
     private String email;
     private String mobile;
-    private String avatorUrl;
+    private String avatarUrl;
 
     public String getUsername() {
         return username;
@@ -48,11 +48,11 @@ public class AdminstratorCreateIn {
         this.mobile = mobile;
     }
 
-    public String getAvatorUrl() {
-        return avatorUrl;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatorUrl(String avatorUrl) {
-        this.avatorUrl = avatorUrl;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

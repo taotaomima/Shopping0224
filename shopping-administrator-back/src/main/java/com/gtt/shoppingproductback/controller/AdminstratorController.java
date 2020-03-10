@@ -91,7 +91,7 @@ public class AdminstratorController {
         administrator.setUsername(adminstratorCreateIn.getUsername());
         administrator.setRealName(adminstratorCreateIn.getRealName());
         administrator.setEmail(adminstratorCreateIn.getEmail());
-        administrator.setAvatarUrl(adminstratorCreateIn.getAvatorUrl());
+        administrator.setAvatarUrl(adminstratorCreateIn.getAvatarUrl());
         administrator.setStatus((byte) AdministratorStatus.Enable.ordinal());
         administrator.setCreateTime(new Date());
         String password=BCrypt.withDefaults().hashToString(12,adminstratorCreateIn.getPassword().toCharArray());

@@ -7,7 +7,7 @@ var app = new Vue({
     },
     computed: {
         selectedAdministratorIds() {
-            return this.selectedAdministrators.map(a => a.administratorId);
+            return this.selectedAdministrators.map(a => a.adminstratorId);
         }
     },
     mounted() {
@@ -23,7 +23,7 @@ var app = new Vue({
         handleDelete(index,row){
             console.log('delete click');
             if(confirm("确认删除吗？")){
-                this.deleteAdministrator(row.adminstratorId);
+                this.deleteAdministrator(row.administratorId);
             }
         },
         handleDetchDeleteClick() {
