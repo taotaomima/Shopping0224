@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.gtt.shoppingproductback.dao.OrderDetailMapper;
 import com.gtt.shoppingproductback.dao.OrderMapper;
+import com.gtt.shoppingproductback.dto.in.OrderSearchIn;
 import com.gtt.shoppingproductback.dto.out.OrderListOut;
 import com.gtt.shoppingproductback.dto.out.OrderShowOut;
 import com.gtt.shoppingproductback.po.Customer;
@@ -14,6 +15,7 @@ import com.gtt.shoppingproductback.vo.OrderProductVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,9 +29,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Page<OrderListOut> search(Integer pageNum) {
+    public Page<OrderListOut> search(OrderSearchIn orderSearchIn,Integer pageNum) {
         PageHelper.startPage(pageNum,10);
-        Page<OrderListOut> page = orderMapper.search();
+        Page<OrderListOut> page = orderMapper.search(orderSearchIn.getOrderId(),orderSearchIn.getStatus(),
+                orderSearchIn.getTotalPrice(),orderSearchIn.getCustomerName(),
+                orderSearchIn.getStartTimestamp()==null?null:new Date(orderSearchIn.getStartTimestamp()),
+                orderSearchIn.getEndTimestamp()==null?null:new Date(orderSearchIn.getEndTimestamp()));
         return page;
     }
 

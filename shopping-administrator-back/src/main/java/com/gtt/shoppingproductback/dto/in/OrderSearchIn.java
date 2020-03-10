@@ -8,53 +8,36 @@ import java.util.Date;
 
 
 public class OrderSearchIn {
-    private Integer customerId;
-    private String shipAddress;
-    private String productName;
-    private Double unitPrice;
-    private Integer quantity;
+    private Long orderId;
+    private String customerName;
+    private Byte status;
     private Double totalPrice;
-    private Double shipPrice;
-    private Date createTime;
+    private Long startTimestamp;
+    private Long endTimestamp;
 
-    public Integer getCustomerId() {
-        return customerId;
+
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public String getShipAddress() {
-        return shipAddress;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getProductName() {
-        return productName;
+    public Byte getStatus() {
+        return status;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
     public Double getTotalPrice() {
@@ -65,19 +48,19 @@ public class OrderSearchIn {
         this.totalPrice = totalPrice;
     }
 
-    public Double getShipPrice() {
-        return shipPrice;
+    public Long getStartTimestamp() {
+        return startTimestamp;
     }
 
-    public void setShipPrice(Double shipPrice) {
-        this.shipPrice = shipPrice;
+    public void setStartTimestamp(Long startTimestamp) {
+        this.startTimestamp = startTimestamp;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Long getEndTimestamp() {
+        return endTimestamp;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setEndTimestamp(Long endTimestamp) {
+        this.endTimestamp = endTimestamp;
     }
 }

@@ -18,7 +18,7 @@ public class OrderController {
 
     @GetMapping("/search")
     public PageOut<OrderListOut> search(OrderSearchIn orderSearchIn,@RequestParam(required = false,defaultValue = "1") Integer pageNum){
-        Page<OrderListOut> page = orderService.search(pageNum);
+        Page<OrderListOut> page = orderService.search(orderSearchIn,pageNum);
         PageOut<OrderListOut> pageOut = new PageOut<>();
         pageOut.setPageNum(page.getPageNum());
         pageOut.setPageSize(page.getPageSize());
