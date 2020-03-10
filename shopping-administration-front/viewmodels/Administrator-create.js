@@ -9,7 +9,7 @@ var app = new Vue({
         selectedAvatarUrl: '',
         mainFileList: [],
         selectedStatus: 1,
-        status: [
+        statuses: [
             { value: 0, label: '禁用' },
             { value: 1, label: '启用' }
         ]
@@ -28,7 +28,7 @@ var app = new Vue({
         },
         uploadImage(){
             var formData = new FormData();
-            formData.append("image", this.selectedMainPic);
+            formData.append("image", this.selectedAvatarUrl);
 
             axios.post('/image/upload', formData, {
                 headers: {
