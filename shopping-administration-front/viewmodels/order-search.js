@@ -32,6 +32,7 @@ var app = new Vue({
     methods:{
         handleFindClick(){
             console.log('search click');
+            this.pageNum =1;
             this.searchOrder();
         },
         handleClearClick(){
