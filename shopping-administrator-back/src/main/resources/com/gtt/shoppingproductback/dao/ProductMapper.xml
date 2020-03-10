@@ -184,16 +184,16 @@
     from jcart_product
     <where>
       <if test="productCode != null and productCode !=''">
-        product_code = #{productCode,jdbcType=VARCHAR},
+        product_code = #{productCode,jdbcType=VARCHAR}
       </if>
       <if test="status != null">
-       and status = #{status,jdbcType=TINYINT},
+       and status = #{status,jdbcType=TINYINT}
       </if>
       <if test="stockQuantity != null">
-        and stock_quantity &lt;= #{stockQuantity,jdbcType=INTEGER},
+        and stock_quantity &lt;= #{stockQuantity,jdbcType=INTEGER}
       </if>
       <if test="price != null">
-        and price = #{price,jdbcType=DOUBLE},
+        and price = #{price,jdbcType=DOUBLE}
       </if>
       <if test="productName != null and productName !=''">
         and product_name like concat('%',#{productName},'%')

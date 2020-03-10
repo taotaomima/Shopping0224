@@ -205,19 +205,19 @@
     from jcart_customer
     <where>
       <if test="username != null and username !=''">
-        username = #{username,jdbcType=VARCHAR},
+        username = #{username,jdbcType=VARCHAR}
       </if>
       <if test="mobile != null and mobile != ''">
-        mobile = #{mobile,jdbcType=VARCHAR},
+        and mobile = #{mobile,jdbcType=VARCHAR}
       </if>
       <if test="email != null and email !=''">
-        email = #{email,jdbcType=VARCHAR},
+        and email = #{email,jdbcType=VARCHAR}
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        and status = #{status,jdbcType=TINYINT}
       </if>
       <if test="realName != null and realName !=''">
-        real_name like concat('%',#{realName},'%')
+        and real_name like concat('%',#{realName},'%')
       </if>
     </where>
   </select>

@@ -131,19 +131,19 @@
     on o.customer_id = c.customer_id
     <where>
       <if test="orderId != null">
-        o.order_id= #{orderId,jdbcType=BIGINT},
+        o.order_id= #{orderId,jdbcType=BIGINT}
       </if>
       <if test="status != null">
-        and o.status = #{status,jdbcType=TINYINT},
+        and o.status = #{status,jdbcType=TINYINT}
       </if>
       <if test="startTime != null">
-        and o.create_time &gt;= #{startTime,jdbcType=TIMESTAMP},
+        and o.create_time &gt;= #{startTime,jdbcType=TIMESTAMP}
       </if>
       <if test="endTime != null">
-        and o.create_time &lt;= #{endTime,jdbcType=TIMESTAMP},
+        and o.create_time &lt;= #{endTime,jdbcType=TIMESTAMP}
       </if>
       <if test="totalPrice != null">
-        and o.total_price = #{totalPrice,jdbcType=DOUBLE},
+        and o.total_price = #{totalPrice,jdbcType=DOUBLE}
       </if>
       <if test="customerName != null and customerName !=''">
         and c.real_name like concat('%',#{customerName},'%')
