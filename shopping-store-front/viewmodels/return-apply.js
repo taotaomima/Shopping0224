@@ -11,6 +11,12 @@ var app = new Vue({
         productName: '',
         quantity: '',
         reason: '',
+        reasons: [
+            { value: 0, label: '发货过期' },
+            { value: 1, label: '订单错误' },
+            { value: 2, label: '收到错误商品' },
+            { value: 3, label: '质量问题' }
+        ],
         comment: '',
         opened: '',
     },
@@ -37,6 +43,10 @@ var app = new Vue({
         this.getOrderById();
     },
     methods:{
+        handleApplyClick(){
+            console.log('add returnApply');
+            this.createApply();
+        },
         getOrderById(){
             axios.get('/order/getById', {
                 params: {
@@ -52,6 +62,28 @@ var app = new Vue({
                     app.productCode = returnProduct.productCode;
                     app.productName = returnProduct.productName;
                     app.quantity = returnProduct.quantity;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        createApply(){
+            axios.post('/return/returnApply', {
+                orderId: this.orderId,
+                orderTimestamp: this.orderTimestamp,
+                customerName: this.customerName,
+                mobile: this.mobile,
+                email: this.email,
+                productCode: this.productCode,
+                productName: this.productName,
+                quantity: this.quantity,
+                reason: this.reason,
+                opened: this.opened,
+                comment: this.comment
+            })
+                .then(function (response) {
+                    console.log(response);
+                    alert('申请成功，请等待处理');
                 })
                 .catch(function (error) {
                     console.log(error);
