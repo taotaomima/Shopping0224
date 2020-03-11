@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/elementui.css">
-    <title>Demo</title>
+    <title>return-index</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 {{statuses[scope.row.status].label}}
             </template>
         </el-table-column>
-        <el-table-column prop="createTimestamp" label="退货申请时间">
+        <el-table-column label="退货申请时间">
             <template slot-scope="scope">
                 {{new Date(scope.row.createTimestamp).toLocaleString()}}
             </template>
@@ -38,7 +38,7 @@
 <script src="assets/js/common.js"></script>
 <script src="assets/js/vue.js"></script>
 <script src="assets/js/elementui.js"></script>
-<script src="viewmodels/demo.js"></script>
+<script src="viewmodels/return-index.js"></script>
 
 </body>
 
