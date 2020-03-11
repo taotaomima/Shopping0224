@@ -15,7 +15,7 @@
         <el-table :data="returnHistories" style="width: 100%">
             <el-table-column prop="timestamp" label="时间">
                 <template slot-scope="scope">
-                    {{new Date(scope.row.timestamp).toLocaleString()}}
+                    {{(new Date(scope.row.timestamp)).toLocaleString()}}
                 </template>
             </el-table-column>
             <el-table-column prop="returnStatus" label="退货状态">
@@ -27,7 +27,7 @@
             </el-table-column>
             <el-table-column label="是否通知客户">
                 <template slot-scope="scope">
-                    {{scope.row.customerNotified}}
+                    <span v-if="scope.row.customerNotified">是</span><span v-else>否</span>
                 </template>
             </el-table-column>
         </el-table>
