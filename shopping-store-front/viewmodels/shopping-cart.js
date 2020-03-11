@@ -3,6 +3,17 @@ var app = new Vue({
     data: {
         myShoppingCart:[]
     },
+    computed:{
+        totalPrice(){
+            var subTotalPrice = this.myShoppingCart.map(p=>{
+                return p.unitPrice * p.discount * p.quantity;
+            });
+            var totalPrice = subTotalPrice.reduce((a,b)=> a+b,0);
+            var totalPriceStr = totalPrice.toFixed(2);
+            totalPrice = parseFloat(totalPriceStr);
+            return totalPrice;
+        }
+    },
     mounted(){
         console.log("view mounted");
         //sessionStorage
@@ -17,9 +28,17 @@ var app = new Vue({
         },
         handleDeleteClick(index,row){
             console.log('delete click');
-            this.mmyShoppingCart.splice(index,1);
-            localStorage['myShoppingCartJson']=JSON.stringify(this.myShoppingCart);
-            this.$message.success('删除购物车成功');
+            if(confirm('确认删除？')){
+                this.myShoppingCart.splice(index,1);
+                localStorage['myShoppingCartJson']=JSON.stringify(this.myShoppingCart);
+                this.$message.success('删除购物车成功');
+            }
+        },
+        handleClearCart(){
+            console.log('clear cart click ');
+            this.myShoppingCart=[];
+            localStorage.removeItem('myShoppingCartJson');
         }
+
     }
 })
