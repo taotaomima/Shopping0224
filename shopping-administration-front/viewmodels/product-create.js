@@ -76,7 +76,7 @@ var app = new Vue({
         uploadOtherPics(){
             this.selectedOtherPics.forEach(pic => {
                 var formData = new FormData();
-            formData.append("image", this.selectedOtherPics);
+            formData.append("image",pic.raw);
 
             axios.post('/image/upload', formData, {
                 headers: {

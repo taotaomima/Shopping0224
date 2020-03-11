@@ -27,10 +27,9 @@ var app = new Vue({
     mounted() {
         console.log('view mounted');
 
-        tinymce.init({
+        /* tinymce.init({
             selector: '#mytextarea'
-        });
-
+        }); */
         var url = new URL(location.href);
         this.productId = url.searchParams.get("productId");
         if (!this.productId) {
@@ -87,7 +86,7 @@ var app = new Vue({
         uploadOtherPics(){
             this.selectedOtherPics.forEach(pic => {
                 var formData = new FormData();
-            formData.append("image", this.selectedOtherPics);
+            formData.append("image", pic.raw);
 
             axios.post('/image/upload', formData, {
                 headers: {
