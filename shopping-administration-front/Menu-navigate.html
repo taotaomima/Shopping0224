@@ -50,6 +50,9 @@
           <el-main>
             <jc-product-search-page v-if="selectMainPage =='1-1'"></jc-product-search-page>
             <jc-customer-search-page v-if="selectMainPage =='2-1'"></jc-customer-search-page>
+            <jc-order-search-page v-if="selectMainPage =='3-1'"></jc-order-search-page >
+            <jc-return-search-page v-if="selectMainPage =='3-2'"></jc-return-search-page>
+            <jc-administrator-search-page v-if="selectMainPage =='4-1'"></jc-administrator-search-page>
           </el-main>
         </el-container>
      
@@ -61,6 +64,12 @@
 <script src="assets/js/vue.js"></script>
 <script src="assets/js/elementui.js"></script>
 <script src="viewmodels/menu-navigate.js"></script>
+
+<script src="page/product-search-page.js"></script>
+<script src="page/customer-search-page.js"></script>
+<script src="page/order-search-page.js"></script>
+<script src="page/return-search-page.js"></script>
+<script src="page/administrator-search-page.js"></script>
 
 </body>
 
