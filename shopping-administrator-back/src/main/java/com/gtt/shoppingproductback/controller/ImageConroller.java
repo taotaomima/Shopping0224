@@ -2,6 +2,7 @@ package com.gtt.shoppingproductback.controller;
 
 import com.gtt.shoppingproductback.constant.ClientExceptionConstant;
 import com.gtt.shoppingproductback.exception.ClientException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,9 @@ import java.util.UUID;
 @RequestMapping("/image")
 @CrossOrigin
 public class ImageConroller {
+
+    @Value("${www.image.baseUrl}")
+    private String baseUrl;
 
     private List<String> imageExts = Arrays.asList("jpg","jpeg","png");
     @PostMapping("/upload")
@@ -35,7 +39,7 @@ public class ImageConroller {
             byte[] data = image.getBytes();
             out.write(data);
         }
-        return filename;
+        return baseUrl+"/"+filename;
 
     }
 }
