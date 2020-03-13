@@ -1,6 +1,6 @@
 Vue.component('jc-product-search-page',{
     template:`
-    <div>
+    <div id="app">
 
     <el-input v-model="productCode" placeholder="请输入商品代号"></el-input>
     <el-input v-model="productName" placeholder="请输入商品名称"></el-input>
@@ -92,9 +92,9 @@ Vue.component('jc-product-search-page',{
                   status: this.selectedStatus
                 }
               })
-                .then(function (response) {
+                .then((response)=> {
                   console.log(response);
-                  app.pageInfo = response.data;
+                  this.pageInfo = response.data;
                 })
                 .catch(function (error) {
                   console.log(error);

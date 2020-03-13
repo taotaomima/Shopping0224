@@ -111,9 +111,9 @@ Vue.component('jc-return-search-page',{
                         endTime:this.endTime
                     }
                 })
-                    .then(function (response) {
+                    .then((response)=> {
                         console.log(response);
-                        app.pageInfo = response.data;
+                        this.pageInfo = response.data;
                     })
                     .catch(function (error) {
                         console.log(error);
