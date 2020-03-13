@@ -32,6 +32,11 @@ var app = new Vue({
       this.stockQuantity='',
       this.selectedStatus=''
     },
+    handleEdit(index,row){
+        console.log('edit click',index,row);
+        location.href = 'product-update.html?productId='+row.productId;
+    },
+
     handlePageChange(val) {
       console.log('page change', val);
       this.pageNum = val;

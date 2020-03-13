@@ -150,6 +150,9 @@ var app = new Vue({
                 app.sortOrder = product.sortOrder;
                 app.productAbstract = product.productAbstract;
                 app.description = product.description;
+                tinymce.init({
+                    selector: '#mytextarea'
+                }); 
                 app.mainPicUrl = product.mainPicUrl;
                 app.otherPicUrls = product.otherPicUrls;
               })
