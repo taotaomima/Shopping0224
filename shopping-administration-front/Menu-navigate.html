@@ -11,66 +11,57 @@
 
 <body>
 <div id="app">
+
     <el-container>
         <el-header>JCart电商系统</el-header>
+        <el-container>
         <el-aside width="200px">
-          <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-            <el-submenu index="1">
+          <el-menu unique-opened router background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-submenu v-for="subMenu in subMenus" :key="subMenu.index" :index="subMenu.index">
               <template slot="title">
-                  <i class="el-icon-goods"></i>
-                  <span>商品管理</span>
+                  <i class="subMenu.icon"></i>
+                  <span>{{subMenu.name}}</span>
               </template>
-              <el-menu-item index="1-1" @click="handleMenuItemClick">商品列表</el-menu-item>
+              <el-menu-item v-for="menuItem in subMenu.menuItems" :key="menuItem.index" :index="menuItem.index"
+               :route="menuItem.index">{{menuItem.name}}</el-menu-item>
             </el-submenu>
-            <el-submenu index="2">
-              <template slot="title">
-                  <i class="el-icon-customer"></i>
-                  <span>客户管理</span>
-              </template>
-              <el-menu-item index="2-1" @click="handleMenuItemClick">客户列表</el-menu-item>
-            </el-submenu>
-            <el-submenu index="3">
-                <template slot="title">
-                    <i class="el-icon-order"></i>
-                    <span>销售管理</span>
-                </template>
-                <el-menu-item index="3-1" @click="handleMenuItemClick">订单列表</el-menu-item>
-                <el-menu-item index="3-2" @click="handleMenuItemClick">退货列表</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4">
-                <template slot="title">
-                    <i class="el-icon-user"></i>
-                    <span>用户管理</span>
-                </template>
-                <el-menu-item index="4-1" @click="handleMenuItemClick">用户列表</el-menu-item>
-              </el-submenu>
           </el-menu>
         </el-aside>
 
           <el-main>
-            <jc-product-search-page v-if="selectMainPage =='1-1'"></jc-product-search-page>
+            <router-view></router-view>
+
+            <!-- <jc-product-search-page v-if="selectMainPage =='1-1'"></jc-product-search-page>
             <jc-customer-search-page v-if="selectMainPage =='2-1'"></jc-customer-search-page>
             <jc-order-search-page v-if="selectMainPage =='3-1'"></jc-order-search-page >
             <jc-return-search-page v-if="selectMainPage =='3-2'"></jc-return-search-page>
-            <jc-administrator-search-page v-if="selectMainPage =='4-1'"></jc-administrator-search-page>
+            <jc-administrator-search-page v-if="selectMainPage =='4-1'"></jc-administrator-search-page> -->
           </el-main>
         </el-container>
-     
+      </el-container>
       
 </div>
 
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/js/axios.min.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/vue.js"></script>
 <script src="assets/js/elementui.js"></script>
 <script src="viewmodels/menu-navigate.js"></script>
+<script src="assets/js/vue-router.js"></script>
 
-<script src="page/product-search-page.js"></script>
+<!-- <script src="page/product-search-page.js"></script>
 <script src="page/customer-search-page.js"></script>
 <script src="page/order-search-page.js"></script>
 <script src="page/return-search-page.js"></script>
-<script src="page/administrator-search-page.js"></script>
+<script src="page/administrator-search-page.js"></script> -->
 
+<script src="router-page/administrator-search-route-page.js"></script>
+<script src="router-page/customer-search-route-page.js"></script>
+<script src="router-page/product-search-route-page.js"></script>
+<script src="router-page/product-update-route-page.js"></script>
+<script src="router-page/order-search-route-page.js"></script>
+<script src="router-page/return-search-route-page.js"></script>
 </body>
 
 </html>
