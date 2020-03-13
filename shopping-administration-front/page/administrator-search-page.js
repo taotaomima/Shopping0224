@@ -102,9 +102,9 @@ Vue.component('jc-administrator-search-page',{
                         pageNum: this.pageNum
                     }
                 })
-                    .then(function (response) {
+                    .then((response)=> {
                         console.log(response);
-                        app.pageInfo = response.data;
+                        this.pageInfo = response.data;
                     })
                     .catch(function (error) {
                         console.log(error);

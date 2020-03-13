@@ -112,9 +112,9 @@ Vue.component('jc-order-search-page',{
                     endTime:this.endTime ? this.endTime.getTime():''
                 }
             })
-                .then(function (response) {
+                .then((response)=> {
                     console.log(response);
-                    app.pageInfo = response.data;
+                    this.pageInfo = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
