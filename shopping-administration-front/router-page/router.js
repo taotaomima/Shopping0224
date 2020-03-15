@@ -4,23 +4,27 @@ const router = new VueRouter({
 
 
 const routes = [
-    {path:'/product/search',component: ProductSearchRoutePage},
 
     {path:'/administrator/search',component: AdministratorSearchRoutePage},
     {path:'/administrator/create',component: AdministratorCreateRoutePage},
-    {path:'/administrator/update',component: AdministratorUpdateRoutePage},
-    { path: '/administrator/updateprofile', component: AdministratorUpdateProfileRoutePage },
+    {path:'/administrator/update/:administratorId',component: AdministratorUpdateRoutePage},
+    {path: '/administrator/updateprofile', component: AdministratorUpdateProfileRoutePage },
 
-
-    {path:'/order/search',component: OrderSearchRoutePage},
-    {path:'/return/search',component: ReturnSearchRoutePage},
     {path:'/customer/search',component: CustomerSearchRoutePage},
-    {path:'/customer/show',component: CustomerShowRoutePage},
-
-
+    {path:'/customer/show/:customerId',component: CustomerShowRoutePage},
 
     {path:'/product/search',component: ProductSearchRoutePage},
-    {path: '/product/create', component: ProductCreateRoutePage },
-    {path: '/product/update:productId', component: ProductUpdateRoutePage }
+    {path:'/product/create', component: ProductCreateRoutePage },
+    {path:'/product/update:productId', component: ProductUpdateRoutePage },
+    
+    {path:'/order/search',component: OrderSearchRoutePage},
+    {path:'/order/show/:orderId',component: OrderShowRoutePage},
+
+    {path:'/return/search',component: ReturnSearchRoutePage},
+
+
+
+
+
 
 ]
