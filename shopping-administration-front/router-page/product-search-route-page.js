@@ -2,6 +2,9 @@ const ProductSearchRoutePage = {
     template: `
     <div id="app">
 
+    <el-button type="primary" @click="handleCreateClick">添加商品</el-button>
+        <br><br>
+
     <el-input v-model="productCode" placeholder="请输入商品代号"></el-input>
     <el-input v-model="productName" placeholder="请输入商品名称"></el-input>
     <el-input v-model="price" placeholder="请输入价格"></el-input>
@@ -11,7 +14,7 @@ const ProductSearchRoutePage = {
         </el-option>
     </el-select>
     <el-button type="primary" @click="handleSearchClick">查询</el-button>
-    <el-button type="primary" @click="handleClearClick">置空</el-button><br>
+    <el-button type="primary" @click="handleClearClick">置空条件</el-button><br>
     <br>
     <el-table :data="pageInfo.list" stripe style="width: 100%">
         <el-table-column label="主图" width="180">
@@ -70,6 +73,9 @@ const ProductSearchRoutePage = {
             this.searchProduct();
           },
           methods: {
+            handleCreateClick(){
+              this.$router.push('/product/create');
+          },
             handleSearchClick(){
               console.log('search click');
               this.pageNum = 1;
