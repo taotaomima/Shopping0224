@@ -9,6 +9,8 @@ const routes = [
     {path:'/administrator/search',component: AdministratorSearchRoutePage},
     {path:'/administrator/create',component: AdministratorCreateRoutePage},
     {path:'/administrator/update',component: AdministratorUpdateRoutePage},
+    { path: '/administrator/updateprofile', component: AdministratorUpdateProfileRoutePage },
+
 
     {path:'/order/search',component: OrderSearchRoutePage},
     {path:'/return/search',component: ReturnSearchRoutePage},
