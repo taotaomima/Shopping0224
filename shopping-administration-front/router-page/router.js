@@ -15,6 +15,10 @@ const routes = [
     {path:'/order/search',component: OrderSearchRoutePage},
     {path:'/return/search',component: ReturnSearchRoutePage},
     {path:'/customer/search',component: CustomerSearchRoutePage},
+    {path:'/customer/show',component: CustomerShowRoutePage},
+
+
+
     {path:'/product/update',component: ProductUpdateRoutePage}
 
 ]
