@@ -55,28 +55,29 @@ const ProductCreateRoutePage = {
 
     data(){
         return {
+            activeTab: 'generalTab',
             productCode: '',
-        productName: '',
-        price: '',
-        discount: '',
-        stockQuantity: '',
-        rewordPoints: '',
-        sortOrder: '',
-        productAbstract: '',
-        description: '',
-        selectedStatus: 0,
-        status: [
-            { value: 0,label: '上架'},
-            { value: 1,label: '下架'},
-            { value: 2,label: '待审核'}
-        ],
-        mainPicUrl: '',
-        selectedMainPic: '',
-        otherPicUrls: [],
-        selectedOtherPics: [],
-        mainFileList: [],
-        otherFileList: []
-        }
+            productName: '',
+            price: '',
+            discount: '',
+            stockQuantity: '',
+            rewordPoints: '',
+            sortOrder: '',
+            productAbstract: '',
+            description: '',
+            selectedStatus: 0,
+            status: [
+                { value: 0,label: '上架'},
+                { value: 1,label: '下架'},
+                { value: 2,label: '待审核'}
+            ],
+            mainPicUrl: '',
+            selectedMainPic: '',
+            otherPicUrls: [],
+            selectedOtherPics: [],
+            mainFileList: [],
+            otherFileList: []
+            }
     },
     mounted() {
         console.log('view mounted');
@@ -85,6 +86,13 @@ const ProductCreateRoutePage = {
         });
     },
     methods:{
+        handleTabClick(tab, event) {
+            console.log('tab click', tab, event);
+        },
+        handleGoBack() {
+            console.log('go back click');
+            this.$router.back();
+        },
         handleCreateClick(){
             console.log('create click');
             this.description = tinyMCE.activeEditor.getContent();
@@ -106,9 +114,9 @@ const ProductCreateRoutePage = {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(function (response) {
+                .then((response) => {
                     console.log(response);
-                    app.mainPicUrl = response.data;
+                    this.mainPicUrl = response.data;
                     alert('上传成功');
                 })
                 .catch(function (error) {
@@ -138,10 +146,10 @@ const ProductCreateRoutePage = {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(function (response) {
+                .then((response) => {
                     console.log(response);
                     var url = response.data;
-                    app.otherPicUrls.push(url);
+                    this.otherPicUrls.push(url);
                     alert('上传成功');
                 })
                 .catch(function (error) {

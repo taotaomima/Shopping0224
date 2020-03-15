@@ -197,23 +197,23 @@ const ProductUpdateRoutePage = {
                   .then((response)=> {
                     console.log(response);
                     var product = response.data;
-                    app.productId = product.productId;
-                    app.productCode = product.productCode;
-                    app.productName = product.productName;
-                    app.price = product.price;
-                    app.discount = product.discount;
-                    app.stockQuantity = product.stockQuantity;
-                    app.status = product.status;
-                    app.rewordPoints = product.rewordPoints;
-                    app.sortOrder = product.sortOrder;
-                    app.productAbstract = product.productAbstract;
-                    app.description = product.description;
+                    this.productId = product.productId;
+                    this.productCode = product.productCode;
+                    this.productName = product.productName;
+                    this.price = product.price;
+                    this.discount = product.discount;
+                    this.stockQuantity = product.stockQuantity;
+                    this.status = product.status;
+                    this.rewordPoints = product.rewordPoints;
+                    this.sortOrder = product.sortOrder;
+                    this.productAbstract = product.productAbstract;
+                    this.description = product.description;
                     tinymce.init({
                         selector: '#mytextarea'
                     });
 
-                    app.mainPicUrl = product.mainPicUrl;
-                    app.otherPicUrls = product.otherPicUrls;
+                    this.mainPicUrl = product.mainPicUrl;
+                    this.otherPicUrls = product.otherPicUrls;
                   })
                   .catch(function (error) {
                     console.log(error);
