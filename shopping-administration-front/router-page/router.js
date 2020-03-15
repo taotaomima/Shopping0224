@@ -5,7 +5,11 @@ const router = new VueRouter({
 
 const routes = [
     {path:'/product/search',component: ProductSearchRoutePage},
+
     {path:'/administrator/search',component: AdministratorSearchRoutePage},
+    {path:'/administrator/create',component: AdministratorCreateRoutePage},
+
+
     {path:'/order/search',component: OrderSearchRoutePage},
     {path:'/return/search',component: ReturnSearchRoutePage},
     {path:'/customer/search',component: CustomerSearchRoutePage},

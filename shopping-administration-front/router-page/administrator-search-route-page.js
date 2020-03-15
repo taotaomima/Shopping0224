@@ -21,6 +21,7 @@ const AdministratorSearchRoutePage = {
 
     <el-table-column label="操作">
         <template slot-scope="scope">
+        <el-button size="mini" type="danger" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
     </el-table-column>
@@ -59,6 +60,10 @@ const AdministratorSearchRoutePage = {
                 console.log("create click");
                 this.$router.push('admin/create');
             },
+            handleEdit(index,row){
+                console.log('update click');
+                this.$router.push('admin/update/'+row.administratorId);
+            }
             handleDelete(index,row){
                 console.log('delete click');
                 if(confirm("确认删除吗？")){

@@ -1,4 +1,4 @@
-const RoutePage = {
+const AdministratorCreateRoutePage = {
     template: `
     <div id="app">
     <el-page-header @back="handleGoBack" content="添加管理员">
