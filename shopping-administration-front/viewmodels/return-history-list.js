@@ -43,7 +43,7 @@ var app = new Vue({
                 app.selectedReturnStatus='';
                 app.customerNotified=false;
                 app.comment='';
-                app.getReturnHistory();
+                this.getReturnHistory();
               })
               .catch(function (error) {
                 console.log(error);

@@ -16,11 +16,25 @@ const routes = [
     {path:'/product/search',component: ProductSearchRoutePage},
     {path:'/product/create', component: ProductCreateRoutePage },
     {path:'/product/update:productId', component: ProductUpdateRoutePage },
-    
+
     {path:'/order/search',component: OrderSearchRoutePage},
     {path:'/order/show/:orderId',component: OrderShowRoutePage},
 
     {path:'/return/search',component: ReturnSearchRoutePage},
+    {
+        path: '/return/edit/:returnId',
+        component: ReturnEditRoutePage,
+        children:[
+            {
+                path: 'show',
+                component: ReturnShowRoutePage
+            },
+            {
+                path: 'history',
+                component: ReturnHistoryIndexRoutePage
+            }
+        ]
+    }
 
 
 
