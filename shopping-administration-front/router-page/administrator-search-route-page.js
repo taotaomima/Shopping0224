@@ -58,12 +58,12 @@ const AdministratorSearchRoutePage = {
             },
             handleCreateClick(){
                 console.log("create click");
-                this.$router.push('admin/create');
+                this.$router.push('administrator/create');
             },
             handleEdit(index,row){
                 console.log('update click');
-                this.$router.push('admin/update/'+row.administratorId);
-            }
+                this.$router.push('administrator/update/'+row.administratorId);
+            },
             handleDelete(index,row){
                 console.log('delete click');
                 if(confirm("确认删除吗？")){
