@@ -9,6 +9,7 @@ import com.gtt.shoppingproductback.enumeration.AdministratorStatus;
 import com.gtt.shoppingproductback.exception.ClientException;
 import com.gtt.shoppingproductback.po.Administrator;
 import com.gtt.shoppingproductback.service.AdministratorService;
+import com.gtt.shoppingproductback.util.EmailUtil;
 import com.gtt.shoppingproductback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,8 +37,9 @@ public class AdminstratorController {
     private JWTUtil jwtUtil;
     @Autowired
     private SecureRandom secureRandom;
-    @Resource
-    private MailSender mailSender;
+    @Autowired
+    private EmailUtil emailUtil;
+
     @Value("${spring.mail.username}")
     private String fromEmail;
     private Map<String, String> emailPwdResetCodeMap = new HashMap<>();
@@ -181,17 +183,23 @@ public class AdminstratorController {
     }
 
     @GetMapping("/getPwdRestCode")
-    public void getPwdRestCode(@RequestParam String email){
+    public void getPwdRestCode(@RequestParam String email) throws ClientException {
+        Administrator administrator = administratorService.getByEamil(email);
+        if(administrator == null){
+            throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRCODE,ClientExceptionConstant.ADMINISTRATOR_EMAIL_NOT_EXIST_ERRMSG);
+        }
         byte[] bytes = secureRandom.generateSeed(3);
         //转为十六进制
         String hex = DatatypeConverter.printHexBinary(bytes);
         //发送到邮箱
-        SimpleMailMessage message = new SimpleMailMessage();
+
+        emailUtil.sendRestCode(fromEmail,email,"jcart管理端管理员密码重置",hex);
+        /*SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(email);
         message.setSubject("jcart管理端管理员密码重置");
         message.setText(hex);
-        mailSender.send(message);
+        mailSender.send(message);*/
         //发送消息到mq
         emailPwdResetCodeMap.put(email,hex);
     }
