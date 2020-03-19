@@ -11,8 +11,13 @@
 
 <body>
 <div id="app">
-    <el-input v-model="email" placeholder="请输入邮箱"></el-input><br>
-    <el-button type="primary" @click="handleFindPwd">找回密码</el-button>
+    <div  v-loading="loading">
+        <el-input v-model="email" placeholder="请输入邮箱"></el-input><br>
+        <el-button type="primary" @click="handleFindPwd" :disabled="EnableDisable">找回密码</el-button>
+        <div v-show="!EnableDisable">
+            {{counter}}秒
+        </div>
+    </div>
 </div>
 
 <script src="assets/js/axios.min.js"></script>
