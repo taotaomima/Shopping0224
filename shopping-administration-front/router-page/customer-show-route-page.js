@@ -14,6 +14,7 @@ const CustomerShowRoutePage = {
     订阅新闻：<span v-if="newsSubscribed">是</span><span v-else>否</span> <br>
     积分：{{rewordPoints}} <br>
     默认地址：{{defaultAddress}} <br>
+    <el-button type="primary" @click="handleAddressIndexClick">地址列表</el-button>
     <br>
 </div>
 
@@ -54,9 +55,13 @@ const CustomerShowRoutePage = {
         this.getCustomerById();
     },
     methods:{
+
         handleGoBack(){
             console.log('go back click');
             this.$router.back();
+        },
+        handleAddressIndexClick(){
+            this.$router.push('/address/index/' + this.customerId);
         },
         getCustomerById() {
             axios.get('/customer/getById', {
