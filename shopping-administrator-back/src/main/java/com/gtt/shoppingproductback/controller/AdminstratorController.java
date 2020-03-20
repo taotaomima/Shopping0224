@@ -7,10 +7,12 @@ import com.gtt.shoppingproductback.dto.in.*;
 import com.gtt.shoppingproductback.dto.out.*;
 import com.gtt.shoppingproductback.enumeration.AdministratorStatus;
 import com.gtt.shoppingproductback.exception.ClientException;
+import com.gtt.shoppingproductback.mq.EmailEvent;
 import com.gtt.shoppingproductback.po.Administrator;
 import com.gtt.shoppingproductback.service.AdministratorService;
 import com.gtt.shoppingproductback.util.EmailUtil;
 import com.gtt.shoppingproductback.util.JWTUtil;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
@@ -43,6 +45,9 @@ public class AdminstratorController {
     @Value("${spring.mail.username}")
     private String fromEmail;
     private Map<String, String> emailPwdResetCodeMap = new HashMap<>();
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
 
     @GetMapping("/login")
@@ -193,7 +198,7 @@ public class AdminstratorController {
         String hex = DatatypeConverter.printHexBinary(bytes);
         //发送到邮箱
 
-        emailUtil.sendRestCode(fromEmail,email,"jcart管理端管理员密码重置",hex);
+       /* emailUtil.sendRestCode(fromEmail,email,"jcart管理端管理员密码重置",hex);*/
         /*SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(email);
@@ -201,6 +206,11 @@ public class AdminstratorController {
         message.setText(hex);
         mailSender.send(message);*/
         //发送消息到mq
+        EmailEvent emailEvent = new EmailEvent();
+        emailEvent.setToEmail(email);
+        emailEvent.setTitle("jcart管理端管理员密码重置");
+        emailEvent.setContent(hex);
+        rocketMQTemplate.convertAndSend("SendPwdRestByEmail",emailEvent);
         emailPwdResetCodeMap.put(email,hex);
     }
 
