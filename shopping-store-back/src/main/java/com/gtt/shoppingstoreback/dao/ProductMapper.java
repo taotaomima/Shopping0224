@@ -3,6 +3,9 @@ package com.gtt.shoppingstoreback.dao;
 import com.github.pagehelper.Page;
 import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.po.Product;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer productId);
@@ -18,5 +21,7 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
 
-    Page<ProductListOut> search();
+    Page<ProductListOut> search(@Param("keyword") String keyword,
+                                @Param("status") Byte status);
+
 }

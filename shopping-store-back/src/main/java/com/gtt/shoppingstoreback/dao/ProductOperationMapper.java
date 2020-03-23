@@ -1,6 +1,9 @@
 package com.gtt.shoppingstoreback.dao;
 
+import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.po.ProductOperation;
+
+import java.util.List;
 
 public interface ProductOperationMapper {
     int deleteByPrimaryKey(Integer productId);
@@ -14,4 +17,6 @@ public interface ProductOperationMapper {
     int updateByPrimaryKeySelective(ProductOperation record);
 
     int updateByPrimaryKey(ProductOperation record);
+
+    List<ProductOperation> selectHotProduct();
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ProductOperationServiceImpl implements ProductOperationService {
@@ -29,5 +30,10 @@ public class ProductOperationServiceImpl implements ProductOperationService {
             productOperation.setRecentTime(new Date());
             productOperationMapper.updateByPrimaryKeySelective(productOperation);
         }
+    }
+
+    @Override
+    public List<ProductOperation> selectHotProduct() {
+        return productOperationMapper.selectHotProduct();
     }
 }

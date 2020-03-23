@@ -5,9 +5,11 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.gtt.shoppingstoreback.dao.ProductDetailMapper;
 import com.gtt.shoppingstoreback.dao.ProductMapper;
+import com.gtt.shoppingstoreback.dto.in.ProductSearchIn;
 import com.gtt.shoppingstoreback.dto.out.PageOut;
 import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.dto.out.ProductShowOut;
+import com.gtt.shoppingstoreback.enumeration.ProductStatus;
 import com.gtt.shoppingstoreback.po.Product;
 import com.gtt.shoppingstoreback.po.ProductDetail;
 import org.springframework.stereotype.Service;
@@ -44,10 +46,12 @@ public class ProductServiceImpl implements ProductService {
         return productShowOut;
     }
 
+
+
     @Override
-    public Page<ProductListOut> search(Integer pageNum) {
+    public Page<ProductListOut> search(ProductSearchIn productSearchIn,Integer pageNum) {
         PageHelper.startPage(pageNum,10);
-        Page<ProductListOut> search = productMapper.search();
+        Page<ProductListOut> search = productMapper.search(productSearchIn.getKeyword(),(byte) ProductStatus.OnSales.ordinal());
         return search;
     }
 }

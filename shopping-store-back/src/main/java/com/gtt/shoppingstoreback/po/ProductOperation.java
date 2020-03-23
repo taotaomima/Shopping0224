@@ -1,8 +1,9 @@
 package com.gtt.shoppingstoreback.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProductOperation {
+public class ProductOperation implements Serializable {
     private Integer productId;
 
     private Integer dayCount;

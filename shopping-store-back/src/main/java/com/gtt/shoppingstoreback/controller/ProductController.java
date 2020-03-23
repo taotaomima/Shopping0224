@@ -1,5 +1,6 @@
 package com.gtt.shoppingstoreback.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.gtt.shoppingstoreback.dto.in.ProductSearchIn;
 import com.gtt.shoppingstoreback.dto.out.PageOut;
@@ -7,8 +8,11 @@ import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.dto.out.ProductShowOut;
 import com.gtt.shoppingstoreback.mq.HotProductDto;
 import com.gtt.shoppingstoreback.po.Product;
+import com.gtt.shoppingstoreback.po.ProductOperation;
 import com.gtt.shoppingstoreback.servie.ProductOperationService;
 import com.gtt.shoppingstoreback.servie.ProductService;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +30,13 @@ public class ProductController {
     @Resource
     private KafkaTemplate kafkaTemplate;
 
+    @Resource
+    private RedisTemplate<String,String> redisTemplate;
+
 
     @GetMapping("/search")
     public PageOut<ProductListOut> search(@RequestBody ProductSearchIn productSearchIn, @RequestParam(required = false,defaultValue = "1") Integer pageNum){
-        Page<ProductListOut> page = productService.search(pageNum);
+        Page<ProductListOut> page = productService.search(productSearchIn,pageNum);
         PageOut<ProductListOut> pageOut = new PageOut<>();
         pageOut.setPageNum(page.getPageNum());
         pageOut.setPageSize(page.getPageSize());
@@ -53,8 +60,19 @@ public class ProductController {
     }
 
     @GetMapping("/hot")
-    public List<ProductListOut> getHot(){
+    //@Cacheable("hotproduct")
+    public List<ProductOperation> getHot(){
+        /*List<ProductOperation> productOperations = productOperationService.selectHotProduct();
+        return productOperations;*/
 
-        return null;
+        String hotproduct = redisTemplate.opsForValue().get("hotproduct");
+        if(hotproduct !=null){
+            List<ProductOperation> productOperations = JSON.parseArray(hotproduct, ProductOperation.class);
+            return productOperations;
+        }else{
+            List<ProductOperation> product = productOperationService.selectHotProduct();
+            redisTemplate.opsForValue().set("hotproduct",JSON.toJSONString(product));
+            return product;
+        }
     }
 }
