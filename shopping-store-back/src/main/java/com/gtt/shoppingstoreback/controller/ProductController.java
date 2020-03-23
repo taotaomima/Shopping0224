@@ -5,6 +5,7 @@ import com.gtt.shoppingstoreback.dto.in.ProductSearchIn;
 import com.gtt.shoppingstoreback.dto.out.PageOut;
 import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.dto.out.ProductShowOut;
+import com.gtt.shoppingstoreback.mq.HotProductDto;
 import com.gtt.shoppingstoreback.po.Product;
 import com.gtt.shoppingstoreback.servie.ProductOperationService;
 import com.gtt.shoppingstoreback.servie.ProductService;
@@ -42,8 +43,11 @@ public class ProductController {
     public ProductShowOut getById(@RequestParam Integer productId){
         ProductShowOut productShowOut = productService.getById(productId);
         /*productOperationService.count(productId);*/
+       /* HotProductDto hotProductDto = new HotProductDto();
+        hotProductDto.setProductId(productId);
+        hotProductDto.setProductCode(productShowOut.getProductCode());*/
         // 发送消息到kafka
-        kafkaTemplate.send("hotproduct",productId);
+        kafkaTemplate.send("hotproduct",productId.toString());
         return productShowOut;
 
     }
