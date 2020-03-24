@@ -7,6 +7,7 @@ import com.gtt.shoppingproductback.dto.in.ProductUpdateIn;
 import com.gtt.shoppingproductback.dto.out.PageOut;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
 import com.gtt.shoppingproductback.dto.out.ProductShowOut;
+import com.gtt.shoppingproductback.es.repo.ProductElasticRepo;
 import com.gtt.shoppingproductback.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,7 @@ public class ProductController {
     
     @Autowired
     private ProductService productService;
+
 
     @GetMapping("/search")
     public PageOut<ProductListOut> search(ProductSearchIn productSearchIn, @RequestParam(required = false,defaultValue = "1") Integer pageNum ){

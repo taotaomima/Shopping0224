@@ -10,6 +10,8 @@ import com.gtt.shoppingproductback.dto.in.ProductSearchIn;
 import com.gtt.shoppingproductback.dto.in.ProductUpdateIn;
 import com.gtt.shoppingproductback.dto.out.ProductListOut;
 import com.gtt.shoppingproductback.dto.out.ProductShowOut;
+import com.gtt.shoppingproductback.es.doc.ProductDoc;
+import com.gtt.shoppingproductback.es.repo.ProductElasticRepo;
 import com.gtt.shoppingproductback.po.Product;
 import com.gtt.shoppingproductback.po.ProductDetail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
     @Resource
     private ProductDetailMapper productDetailMapper;
+
+    @Autowired
+    private ProductElasticRepo productElasticRepo;
 
     @Override
     @Transactional
@@ -51,6 +56,14 @@ public class ProductServiceImpl implements ProductService {
         List<String> otherPic = productCreateIn.getOtherPic();
         productDetail.setOtherPicUrls(JSON.toJSONString(otherPic));
         productDetailMapper.insertSelective(productDetail);
+
+        ProductDoc productDoc = new ProductDoc();
+        productDoc.setProductId(productId);
+        productDoc.setProductCode(productCreateIn.getProductCode());
+        productDoc.setProductName(productCreateIn.getProductName());
+        productDoc.setProductAbstract(productCreateIn.getDescription());
+        productElasticRepo.save(productDoc)
+
         return productId;
     }
 

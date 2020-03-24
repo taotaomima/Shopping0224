@@ -6,11 +6,14 @@ import com.gtt.shoppingstoreback.dto.in.ProductSearchIn;
 import com.gtt.shoppingstoreback.dto.out.PageOut;
 import com.gtt.shoppingstoreback.dto.out.ProductListOut;
 import com.gtt.shoppingstoreback.dto.out.ProductShowOut;
+import com.gtt.shoppingstoreback.es.doc.ProductDoc;
+import com.gtt.shoppingstoreback.es.doc.repo.ProductElasticRepo;
 import com.gtt.shoppingstoreback.mq.HotProductDto;
 import com.gtt.shoppingstoreback.po.Product;
 import com.gtt.shoppingstoreback.po.ProductOperation;
 import com.gtt.shoppingstoreback.servie.ProductOperationService;
 import com.gtt.shoppingstoreback.servie.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -33,10 +36,18 @@ public class ProductController {
     @Resource
     private RedisTemplate<String,String> redisTemplate;
 
+    @Autowired
+    private ProductElasticRepo productElasticRepo;
+
 
     @GetMapping("/search")
     public PageOut<ProductListOut> search(@RequestBody ProductSearchIn productSearchIn, @RequestParam(required = false,defaultValue = "1") Integer pageNum){
+
+        String keyword = productSearchIn.getKeyword();
+        List<ProductDoc> productDocs = productElasticRepo.findByProductNameLikeOrProductAbstractLike(keyword, keyword);
+
         Page<ProductListOut> page = productService.search(productSearchIn,pageNum);
+
         PageOut<ProductListOut> pageOut = new PageOut<>();
         pageOut.setPageNum(page.getPageNum());
         pageOut.setPageSize(page.getPageSize());
